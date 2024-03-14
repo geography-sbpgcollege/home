@@ -13,6 +13,7 @@
 <body>
   <body>
     <font face="Courier" color="white">
+          <h1 style="text-align:right;"><span id="span"></span></h1>
     <h1 style="text-align:center;">Department of Geography, Shri Baldeo P. G. College Baragaon, Varanasi</h1>
       <hr color="blue">
       <marquee>This is the site of the Geography Department of Shri Baldev Postgraduate College, Baragaon, Varanasi. Here you will get educational material for your studies. यह श्री बलदेव स्नातकोत्तर महाविद्यालय बड़ागांव, वाराणसी के भूगोल विभाग की साइट है। यहां आपको अपनी पढ़ाई के लिए शैक्षणिक सामग्री मिलेगी।</marquee>
@@ -101,4 +102,18 @@ body {
   transform: translateY(0);
 }
   </style>
+  <script>
+var span = document.getElementById('span');
+
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  span.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
+
+setInterval(time, 1000);
+  </script>
 </html>
