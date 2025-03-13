@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, <span id="username"></span></h2>
+    <p>Semester: <span id="semester"></span></p>
+    <p>Class: <span id="class"></span></p>
+
+    <script>
+        let params = new URLSearchParams(window.location.search);
+        let userId = params.get("user");
+
+        let sheetId = "1kodgVwd-cXwBxfc01Iz8pVY8TbiXdH4nr1HY_2Hj9ss";
+        let apiKey = "0fd5c37b780a26eb1993a9548a2bd1e6123a03d8";
+        let range = "Users!A1:E100";
+        let url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let users = data.values;
+            let user = users.find(row => row[0] === userId);
+
+            if (user) {
+                document.getElementById("username").textContent = user[1];
+                document.getElementById("semester").textContent = user[3];
+                document.getElementById("class").textContent = user[4];
+            } else {
+                alert("User not found!");
+                window.location.href = "login.html";
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    </script>
+</body>
+</html>
