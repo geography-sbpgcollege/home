@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>User Registration</h2>
+    <form id="registerForm">
+        <input type="text" id="name" placeholder="Full Name" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <select id="semester">
+            <option value="Sem 1">1st Semester</option>
+            <option value="Sem 2">2nd Semester</option>
+        </select><br>
+        <select id="class">
+            <option value="Class A">M.A.</option>
+            <option value="Class B">B.A.</option>
+        </select><br>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let semester = document.getElementById("semester").value;
+            let className = document.getElementById("class").value;
+
+            let sheetId = "1kodgVwd-cXwBxfc01Iz8pVY8TbiXdH4nr1HY_2Hj9ss";
+            let apiKey = "0fd5c37b780a26eb1993a9548a2bd1e6123a03d8";
+            let range = "Users!A1";
+            let url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
+
+            let userData = {
+                values: [[name, email, password, semester, className]]
+            };
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Registration Successful!");
+                window.location.href = "login.html";
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>
