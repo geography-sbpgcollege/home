@@ -1,14 +1,77 @@
-<html>
-  <head>
-  <title>sbpgloginportal.com</title>
-    <script src="https://www.authpro.com/js/auth.js"></script>
-<script>
-  var ap=new AuthPro('GeographySbpgc');
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</script>
-  <body>
-    <center><b><h2 style="font-family:Helvetica">Please login here</h2></b></center>
-    <center><button src="https://www.authpro.com/auth/GeographySbpgc/">Login</button></center>
-  </body>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: white;
+            color: black;
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background: #ff7eb3;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Geography Portal</h1>
+    <div class="button-container">
+        <button class="btn" onclick="location.href='login.html'">Login</button>
+        <button class="btn" onclick="location.href='register.html'">Register</button>
+        <button class="btn" onclick="sendEmail()">Query / Forgot Password</button>
+    </div>
+
+    <script>
+        function sendEmail() {
+            let subject = encodeURIComponent("Regarding Query / Forgot Password (प्रश्न / पासवर्ड भूलने के बारे में)");
+            let body = encodeURIComponent(`Dear Sir,\n\nI have a query regarding the Geography-SBPG College portal. (मुझे भूगोल-SBPG कॉलेज पोर्टल के बारे में प्रश्न है।)\n\nDo you have forgotten your password? (क्या आप अपना पासवर्ड भूल गए हैं?): Yes/No\nDo you have any other query? (क्या आपके पास कोई अन्य प्रश्न है?): Yes/No\nIf you have any other query, please mention (यदि आपके पास कोई अन्य प्रश्न है, तो कृपया उल्लेख करें):\n\nIs this the same email you registered on the portal? (क्या यह वही ईमेल है जिसे आपने पोर्टल पर पंजीकृत किया था?): Yes/No\nIf not, what is your registered email? (यदि नहीं, तो आपका पंजीकृत ईमेल क्या है?):\n\nI shall be grateful to you if you do it ASAP. (यदि आप इसे जल्द से जल्द कर सकें तो मैं आभारी रहूंगा।)\n\nYours sincerely,\n[Your Name]`);
+
+            window.location.href = `mailto:geographyhelpline@testadege.onmicrosoft.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
 </html>
