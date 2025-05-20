@@ -1,6 +1,6 @@
 # Geography Department Website - SBPG College
 
-Welcome to the official website of the **Department of Geography**, S.B.P.G. College, Barabanki.
+Welcome to the official website of the **Department of Geography**, S.B.P.G. College, Baragaon, Varanasi-221204
 
 **Live Website:** [geography-sbpgcollege.github.io/home](https://geography-sbpgcollege.github.io/home/)
 
