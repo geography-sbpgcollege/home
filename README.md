@@ -21,8 +21,11 @@ This website provides academic information, resources, and updates related to th
 
 - HTML5
 - CSS3
-- JavaScript (optional)
+- JavaScript
 - GitHub Pages for hosting
+- Bootstrap
+- Google App Scripts
+- Google API & Attribution Service
 
 ## How to Contribute
 
