@@ -5,36 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loading...</title>
   <style>
-    body {
-      margin: 0;
-      background-color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .spinner {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    /* From Uiverse.io by SchawnnahJ */ 
+.loader {
+ position: relative;
+ width: 2.5em;
+ height: 2.5em;
+ transform: rotate(165deg);
+}
+
+.loader:before, .loader:after {
+ content: "";
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ display: block;
+ width: 0.5em;
+ height: 0.5em;
+ border-radius: 0.25em;
+ transform: translate(-50%, -50%);
+}
+
+.loader:before {
+ animation: before8 2s infinite;
+}
+
+.loader:after {
+ animation: after6 2s infinite;
+}
+
+@keyframes before8 {
+ 0% {
+  width: 0.5em;
+  box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+ }
+
+ 35% {
+  width: 2.5em;
+  box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+ }
+
+ 70% {
+  width: 0.5em;
+  box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+ }
+
+ 100% {
+  box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+ }
+}
+
+@keyframes after6 {
+ 0% {
+  height: 0.5em;
+  box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+ }
+
+ 35% {
+  height: 2.5em;
+  box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+ }
+
+ 70% {
+  height: 0.5em;
+  box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+ }
+
+ 100% {
+  box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+ }
+}
+
+.loader {
+ position: absolute;
+ top: calc(50% - 1.25em);
+ left: calc(50% - 1.25em);
+}
   </style>
 </head>
 <body>
-  <div class="spinner"></div>
+<!-- From Uiverse.io by SchawnnahJ --> 
+
+<div class="loader"></div>
+<br>
+<br>
+<br>
+<br
+>Hold tight... Processing your request
   <script>
     const nextPage = sessionStorage.getItem("nextPage");
     if (nextPage) {
       setTimeout(() => {
         window.location.href = nextPage;
-      }, 1800);
+      }, 2005);
     } else {
       window.location.href = "index.html";
     }
