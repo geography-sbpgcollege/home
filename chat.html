@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography SBPG College Chat Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .message-animate {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        
+        .user-message-animate {
+            animation: slideInRight 0.3s ease-out forwards;
+        }
+        
+        .bot-message-animate {
+            animation: slideInLeft 0.3s ease-out forwards;
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .waving {
+            animation: wave 2s ease infinite;
+            transform-origin: 70% 70%;
+            display: inline-block;
+        }
+        
+        /* Scrollbar styling */
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .chat-container::-webkit-scrollbar-track {
+            background: rgba(241, 241, 241, 0.5);
+            border-radius: 10px;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb {
+            background: rgba(79, 70, 229, 0.5);
+            border-radius: 10px;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(79, 70, 229, 0.8);
+        }
+        
+        /* Pulse animation for thinking state */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .thinking .dot {
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        
+        .thinking .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .thinking .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        /* Custom toggle switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #4f46e5;
+        }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #4f46e5;
+        }
+        
+        /* Voice recording animation */
+        @keyframes pulse-scale {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .recording {
+            animation: pulse-scale 1.5s infinite;
+            color: #ef4444;
+        }
+        
+        /* Contact form styling */
+        .contact-form input, .contact-form textarea {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            padding: 8px 12px;
+            background: #e0e7ff;
+            border-radius: 18px;
+            width: fit-content;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: #4f46e5;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+        }
+        
+        /* Gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        
+        /* Avatar pulse */
+        @keyframes avatarPulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+        
+        .avatar-pulse {
+            animation: avatarPulse 2s infinite;
+        }
+        
+        /* Button hover effects */
+        .btn-hover-effect {
+            transition: all 0.3s;
+            transform: translateY(0);
+        }
+        
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Notification badge */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        /* Confetti effect */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Main container -->
+    <div class="flex flex-col h-screen">
+        <!-- Header -->
+        <header class="gradient-bg text-white p-4 shadow-md">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="avatar-pulse bg-white text-indigo-600 rounded-full w-10 h-10 flex items-center justify-center">
+                        <i class="fas fa-globe-americas text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Geography SBPG College Assistant</h1>
+                        <p class="text-xs opacity-80">Your personalized geography department helper</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="help-btn" class="relative p-2 rounded-full hover:bg-indigo-700 transition btn-hover-effect">
+                        <i class="fas fa-question-circle"></i>
+                        <span id="help-notification" class="notification-badge hidden">1</span>
+                    </button>
+                    <button id="toggle-theme" class="p-2 rounded-full hover:bg-indigo-700 transition btn-hover-effect">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="clear-chat" class="p-2 rounded-full hover:bg-indigo-700 transition btn-hover-effect" title="Clear conversation">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Chat container -->
+        <div class="flex-1 overflow-hidden container mx-auto p-4 flex flex-col">
+            <div id="chat-container" class="chat-container flex-1 overflow-y-auto mb-4 space-y-4 p-2 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm">
+                <!-- Welcome message will be added dynamically -->
+            </div>
+            
+            <!-- Input area -->
+            <div class="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-md border border-gray-200">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                            <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <span class="text-sm text-gray-600">Expert Mode</span>
+                    </div>
+                    <div class="flex space-x-1">
+                        <button id="quick-facts" class="px-3 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full text-xs transition btn-hover-effect">
+                            <i class="fas fa-lightbulb mr-1"></i> Quick Facts
+                        </button>
+                        <button id="events-btn" class="px-3 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full text-xs transition btn-hover-effect">
+                            <i class="fas fa-calendar-alt mr-1"></i> Events
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-2">
+                    <div class="flex-1 relative">
+                        <input id="user-input" type="text" placeholder="Ask about geography courses, faculty, or research..." 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent pr-10">
+                        <button id="attach-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-indigo-600">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                    </div>
+                    <button id="send-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-lg transition btn-hover-effect">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <button id="voice-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-3 rounded-lg transition btn-hover-effect relative">
+                        <i class="fas fa-microphone"></i>
+                        <span id="voice-status" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden"></span>
+                    </button>
+                </div>
+                
+                <div class="mt-2 flex justify-between items-center">
+                    <p class="text-xs text-gray-500">
+                        <span id="char-count">0</span>/250 characters
+                    </p>
+                    <div class="flex space-x-1">
+                        <button id="feedback-btn" class="text-xs text-indigo-600 hover:text-indigo-800 transition">
+                            <i class="far fa-smile mr-1"></i> Feedback
+                        </button>
+                        <button id="history-btn" class="text-xs text-indigo-600 hover:text-indigo-800 transition">
+                            <i class="fas fa-history mr-1"></i> History
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedback-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Send Feedback</h3>
+                <button id="close-feedback" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="feedback-form">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm mb-2">How was your experience?</label>
+                    <div class="flex space-x-2">
+                        <button type="button" class="emoji-btn flex-1 py-2 border rounded-lg hover:bg-gray-100" data-rating="1">
+                            <span class="text-2xl">😞</span>
+                            <span class="block text-xs mt-1">Poor</span>
+                        </button>
+                        <button type="button" class="emoji-btn flex-1 py-2 border rounded-lg hover:bg-gray-100" data-rating="2">
+                            <span class="text-2xl">😐</span>
+                            <span class="block text-xs mt-1">Okay</span>
+                        </button>
+                        <button type="button" class="emoji-btn flex-1 py-2 border rounded-lg hover:bg-gray-100" data-rating="3">
+                            <span class="text-2xl">😊</span>
+                            <span class="block text-xs mt-1">Good</span>
+                        </button>
+                        <button type="button" class="emoji-btn flex-1 py-2 border rounded-lg hover:bg-gray-100" data-rating="4">
+                            <span class="text-2xl">😍</span>
+                            <span class="block text-xs mt-1">Great</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="feedback-message" class="block text-gray-700 text-sm mb-2">Your feedback</label>
+                    <textarea id="feedback-message" rows="3" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" id="cancel-feedback" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quick Facts Modal -->
+    <div id="facts-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Geography Quick Facts</h3>
+                <button id="close-facts" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-3">
+                <div class="p-3 bg-indigo-50 rounded-lg">
+                    <p class="font-medium text-indigo-800">Department Established</p>
+                    <p class="text-sm">1978 with 3 faculty members</p>
+                </div>
+                <div class="p-3 bg-indigo-50 rounded-lg">
+                    <p class="font-medium text-indigo-800">Current Faculty</p>
+                    <p class="text-sm">12 professors, 8 associate professors</p>
+                </div>
+                <div class="p-3 bg-indigo-50 rounded-lg">
+                    <p class="font-medium text-indigo-800">Student Ratio</p>
+                    <p class="text-sm">1:10 faculty to student ratio</p>
+                </div>
+                <div class="p-3 bg-indigo-50 rounded-lg">
+                    <p class="font-medium text-indigo-800">Research Papers</p>
+                    <p class="text-sm">45+ published in last 5 years</p>
+                </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+                <button id="close-facts-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const chatContainer = document.getElementById('chat-container');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const voiceBtn = document.getElementById('voice-btn');
+            const voiceStatus = document.getElementById('voice-status');
+            const toggleTheme = document.getElementById('toggle-theme');
+            const clearChatBtn = document.getElementById('clear-chat');
+            const helpBtn = document.getElementById('help-btn');
+            const helpNotification = document.getElementById('help-notification');
+            const charCount = document.getElementById('char-count');
+            const quickFactsBtn = document.getElementById('quick-facts');
+            const eventsBtn = document.getElementById('events-btn');
+            const feedbackBtn = document.getElementById('feedback-btn');
+            const historyBtn = document.getElementById('history-btn');
+            const attachBtn = document.getElementById('attach-btn');
+            
+            // Modal elements
+            const feedbackModal = document.getElementById('feedback-modal');
+            const closeFeedback = document.getElementById('close-feedback');
+            const cancelFeedback = document.getElementById('cancel-feedback');
+            const feedbackForm = document.getElementById('feedback-form');
+            const factsModal = document.getElementById('facts-modal');
+            const closeFacts = document.getElementById('close-facts');
+            const closeFactsBtn = document.getElementById('close-facts-btn');
+            
+            // Speech recognition setup
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            let recognition;
+            let isListening = false;
+            
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                recognition.onstart = function() {
+                    isListening = true;
+                    voiceBtn.classList.add('recording');
+                    voiceStatus.textContent = '';
+                    voiceStatus.classList.remove('hidden');
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    userInput.value = transcript;
+                    updateCharCount();
+                    processInput();
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event.error);
+                    addMessage("Sorry, I couldn't understand your voice input. Please try again or type your question.", false);
+                };
+                
+                recognition.onend = function() {
+                    isListening = false;
+                    voiceBtn.classList.remove('recording');
+                    voiceStatus.classList.add('hidden');
+                };
+            }
+            
+            // User data from localStorage
+            let userData = JSON.parse(localStorage.getItem('geoAssistantUser')) || {};
+            
+            // Conversation history
+            let conversationHistory = JSON.parse(localStorage.getItem('geoAssistantHistory')) || [];
+            
+            // Theme toggle
+            let darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.documentElement.classList.add('dark');
+                toggleTheme.innerHTML = '<i class="fas fa-sun"></i>';
+                toggleTheme.classList.replace('hover:bg-indigo-600', 'hover:bg-indigo-800');
+            }
+            
+            toggleTheme.addEventListener('click', function() {
+                darkMode = !darkMode;
+                localStorage.setItem('darkMode', darkMode);
+                if (darkMode) {
+                    document.documentElement.classList.add('dark');
+                    toggleTheme.innerHTML = '<i class="fas fa-sun"></i>';
+                    toggleTheme.classList.replace('hover:bg-indigo-600', 'hover:bg-indigo-800');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    toggleTheme.innerHTML = '<i class="fas fa-moon"></i>';
+                    toggleTheme.classList.replace('hover:bg-indigo-800', 'hover:bg-indigo-600');
+                }
+            });
+            
+            // Character count for input
+            function updateCharCount() {
+                const count = userInput.value.length;
+                charCount.textContent = count;
+                if (count > 200) {
+                    charCount.classList.add('text-orange-500');
+                } else {
+                    charCount.classList.remove('text-orange-500');
+                }
+            }
+            
+            userInput.addEventListener('input', updateCharCount);
+            
+            // Add message to chat
+            function addMessage(content, isUser = false, saveToHistory = true) {
+                const messageDiv = document.createElement('div');
+                
+                if (isUser) {
+                    messageDiv.classList.add('user-message-animate');
+                    messageDiv.innerHTML = `
+                        <div class="flex justify-end">
+                            <div class="bg-indigo-600 text-white p-4 rounded-lg max-w-3xl shadow-md">
+                                <p>${content}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    messageDiv.classList.add('bot-message-animate');
+                    messageDiv.innerHTML = `
+                        <div class="bg-indigo-50 p-4 rounded-lg max-w-3xl shadow-md">
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center floating">
+                                    <i class="fas fa-globe-americas"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-indigo-800">Geography Assistant</p>
+                                    <div class="text-gray-700 mt-1">${content}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                chatContainer.appendChild(messageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                if (saveToHistory) {
+                    conversationHistory.push({
+                        content,
+                        isUser,
+                        timestamp: new Date().toISOString()
+                    });
+                    localStorage.setItem('geoAssistantHistory', JSON.stringify(conversationHistory));
+                }
+            }
+            
+            // Show contact form
+            function showContactForm() {
+                const formDiv = document.createElement('div');
+                formDiv.classList.add('message-animate', 'bg-indigo-50', 'p-4', 'rounded-lg', 'max-w-3xl');
+                formDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold text-indigo-800">Geography Assistant</p>
+                            <div class="text-gray-700 mt-1">
+                                <p>I couldn't find the information you requested. Would you like to submit your question to our department directly?</p>
+                                <form id="contact-form" class="contact-form mt-3">
+                                    <input type="text" id="contact-name" placeholder="Your Name" required value="${userData.name || ''}">
+                                    <input type="email" id="contact-email" placeholder="Your Email" required value="${userData.email || ''}">
+                                    <textarea id="contact-message" rows="3" placeholder="Your question or message" required></textarea>
+                                    <div class="flex justify-end space-x-2">
+                                        <button type="button" id="cancel-contact" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                chatContainer.appendChild(formDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // Add event listeners to form buttons
+                const contactForm = document.getElementById('contact-form');
+                const cancelBtn = document.getElementById('cancel-contact');
+                
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('contact-name').value;
+                    const email = document.getElementById('contact-email').value;
+                    const message = document.getElementById('contact-message').value;
+                    
+                    // Save user data
+                    userData = { ...userData, name, email };
+                    localStorage.setItem('geoAssistantUser', JSON.stringify(userData));
+                    
+                    // Create confetti effect
+                    createConfetti();
+                    
+                    formDiv.innerHTML = `
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-indigo-800">Geography Assistant</p>
+                                <p class="text-gray-700 mt-1">Thank you, ${name}! Your message has been submitted to our department. We'll get back to you at ${email} as soon as possible.</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add to history
+                    conversationHistory.push({
+                        content: `Submitted contact form: ${message}`,
+                        isUser: true,
+                        timestamp: new Date().toISOString()
+                    });
+                    conversationHistory.push({
+                        content: `Thank you, ${name}! Your message has been submitted to our department. We'll get back to you at ${email} as soon as possible.`,
+                        isUser: false,
+                        timestamp: new Date().toISOString()
+                    });
+                    localStorage.setItem('geoAssistantHistory', JSON.stringify(conversationHistory));
+                });
+                
+                cancelBtn.addEventListener('click', function() {
+                    formDiv.remove();
+                });
+            }
+            
+            // Create confetti effect
+            function createConfetti() {
+                const colors = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const animationDuration = Math.random() * 3 + 2;
+                    
+                    confetti.animate([
+                        { opacity: 1, transform: `translateY(0) rotate(0deg)` },
+                        { opacity: 1, transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)` }
+                    ], {
+                        duration: animationDuration * 1000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                    });
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }
+            }
+            
+            // Show thinking indicator
+            function showThinking() {
+                const thinkingDiv = document.createElement('div');
+                thinkingDiv.classList.add('thinking', 'message-animate', 'bg-indigo-50', 'p-4', 'rounded-lg', 'max-w-3xl');
+                thinkingDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-indigo-800">Geography Assistant</p>
+                            <div class="typing-indicator mt-2">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                chatContainer.appendChild(thinkingDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                return thinkingDiv;
+            }
+            
+            // Remove thinking indicator
+            function removeThinking(thinkingDiv) {
+                thinkingDiv.remove();
+            }
+            
+            // Process user input
+            function processInput() {
+                const input = userInput.value.trim();
+                if (!input) return;
+                
+                addMessage(input, true);
+                userInput.value = '';
+                updateCharCount();
+                
+                const thinkingDiv = showThinking();
+                
+                // Simulate API response delay
+                setTimeout(() => {
+                    removeThinking(thinkingDiv);
+                    const response = generateResponse(input);
+                    
+                    if (response.showContactForm) {
+                        showContactForm();
+                    } else {
+                        addMessage(response.content);
+                    }
+                    
+                    // Check if we should show help notification
+                    if (conversationHistory.length % 5 === 0 && !localStorage.getItem('helpShown')) {
+                        helpNotification.classList.remove('hidden');
+                        helpNotification.textContent = '!';
+                        localStorage.setItem('helpShown', 'true');
+                    }
+                }, 1000 + Math.random() * 2000); // Random delay between 1-3 seconds
+            }
+            
+            // Generate response based on input
+            function generateResponse(input) {
+                const lowerInput = input.toLowerCase();
+                const userName = userData.name ? `, ${userData.name}` : '';
+                
+                // Greeting responses
+                if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
+                    if (!userData.name) {
+                        return {
+                            content: `Hello there! I'm the Geography Department assistant. What's your name?`,
+                            showContactForm: false
+                        };
+                    } else {
+                        return {
+                            content: `Hello${userName}! <span class="waving">👋</span> How can I assist you with geography-related questions today?`,
+                            showContactForm: false
+                        };
+                    }
+                }
+                
+                // Name capture
+                if (!userData.name && (lowerInput.includes('name is') || lowerInput.includes("i'm") || lowerInput.includes('i am'))) {
+                    let name = input;
+                    if (lowerInput.includes('name is')) {
+                        name = input.split('name is')[1].trim();
+                    } else if (lowerInput.includes("i'm")) {
+                        name = input.split("i'm")[1].trim();
+                    } else if (lowerInput.includes('i am')) {
+                        name = input.split('i am')[1].trim();
+                    }
+                    
+                    // Remove any punctuation at the end
+                    if (name.endsWith('.') || name.endsWith('!') || name.endsWith('?')) {
+                        name = name.slice(0, -1);
+                    }
+                    
+                    userData.name = name;
+                    localStorage.setItem('geoAssistantUser', JSON.stringify(userData));
+                    
+                    return {
+                        content: `Nice to meet you, ${name}! I'm here to help you with all things related to our Geography Department. What would you like to know about?`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Course-related queries
+                if (lowerInput.includes('course') || lowerInput.includes('program') || lowerInput.includes('study')) {
+                    return {
+                        content: `${userName}, the Geography Department at SBPG College offers several courses including:
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>Bachelor of Science in Geography</strong> (3 years) - Focus on physical and human geography</li>
+                            <li><strong>Master of Science in Geography</strong> (2 years) - Specializations available</li>
+                            <li><strong>Post Graduate Diploma in GIS and Remote Sensing</strong> (1 year) - Hands-on technical training</li>
+                            <li><strong>Certificate Course in Cartography</strong> (6 months) - Map-making fundamentals</li>
+                        </ul>
+                        <p class="mt-2">Would you like more details about any specific program?</p>`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Faculty queries
+                if (lowerInput.includes('faculty') || lowerInput.includes('professor') || lowerInput.includes('teacher')) {
+                    return {
+                        content: `${userName}, our Geography Department has a team of experienced faculty members:
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>Dr. A. Sharma</strong> - Head of Department, specializes in Climatology (25 years experience)</li>
+                            <li><strong>Prof. R. Patel</strong> - GIS and Remote Sensing expert (PhD from IIT Bombay)</li>
+                            <li><strong>Dr. S. Khan</strong> - Human Geography and Urban Studies (Published 3 books)</li>
+                            <li><strong>Prof. M. Gupta</strong> - Physical Geography and Geomorphology (Fieldwork specialist)</li>
+                            <li><strong>Dr. P. Desai</strong> - Environmental Geography (Recipient of National Geography Award)</li>
+                        </ul>
+                        <p class="mt-2">You can find their complete profiles, office hours and contact information on our faculty page.</p>`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Research queries
+                if (lowerInput.includes('research') || lowerInput.includes('project') || lowerInput.includes('opportunity')) {
+                    return {
+                        content: `${userName}, our department is actively involved in cutting-edge research:
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>Climate change impact</strong> on regional agriculture (Ongoing 3-year project)</li>
+                            <li><strong>Urban sprawl analysis</strong> using GIS (Collaboration with city planning department)</li>
+                            <li><strong>Water resource management</strong> in arid regions (Field studies in Rajasthan)</li>
+                            <li><strong>Community-based disaster management</strong> (Funded by NDMA)</li>
+                            <li><strong>Migration patterns analysis</strong> (Using census and satellite data)</li>
+                        </ul>
+                        <p class="mt-2">We encourage student participation in research. Undergraduate students can apply for summer research internships, while postgraduate students can join ongoing projects for their dissertations.</p>`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Facilities queries
+                if (lowerInput.includes('facility') || lowerInput.includes('lab') || lowerInput.includes('resource')) {
+                    return {
+                        content: `${userName}, our department boasts state-of-the-art facilities:
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>GIS and Remote Sensing Lab</strong> - 20 workstations with ArcGIS, QGIS, ERDAS Imagine</li>
+                            <li><strong>Geography Resource Center</strong> - 5,000+ maps, 200+ atlases, drone imagery</li>
+                            <li><strong>Weather monitoring station</strong> - Real-time data collection since 1995</li>
+                            <li><strong>Computer lab</strong> - Specialized geography software and statistical tools</li>
+                            <li><strong>Department library</strong> - 8,000+ volumes and journal subscriptions</li>
+                        </ul>
+                        <p class="mt-2">All facilities are available to registered students during college hours and by special arrangement.</p>`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Admission queries
+                if (lowerInput.includes('admission') || lowerInput.includes('apply') || lowerInput.includes('requirement')) {
+                    return {
+                        content: `${userName}, here are our admission details:
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                            <div class="bg-indigo-50 p-3 rounded-lg">
+                                <p class="font-semibold text-indigo-800">B.Sc. Geography</p>
+                                <p class="text-sm">10+2 with 50% marks<br>Entrance test + interview<br>60 seats available</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-lg">
+                                <p class="font-semibold text-indigo-800">M.Sc. Geography</p>
+                                <p class="text-sm">Bachelor's in Geography<br>Written test + interview<br>30 seats available</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-lg">
+                                <p class="font-semibold text-indigo-800">PG Diploma</p>
+                                <p class="text-sm">Bachelor's in any discipline<br>Basic computer knowledge<br>20 seats available</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-lg">
+                                <p class="font-semibold text-indigo-800">Certificate Course</p>
+                                <p class="text-sm">10+2 qualification<br>No entrance test<br>40 seats available</p>
+                            </div>
+                        </div>
+                        <p class="mt-3">Applications open May 1st each year. Would you like me to send you the application link when it's available?</p>`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Events queries
+                if (lowerInput.includes('event') || lowerInput.includes('seminar') || lowerInput.includes('workshop')) {
+                    return {
+                        content: `${userName}, here are our upcoming events:
+                        <div class="space-y-2 mt-3">
+                            <div class="p-3 bg-indigo-50 rounded-lg">
+                                <p class="font-semibold text-indigo-800">Geography Awareness Week</p>
+                                <p class="text-sm">Nov 13-17, 2023 | College Auditorium</p>
+                                <p class="text-xs mt-1">Daily lectures, map exhibitions, and field trips</p>
+                            </div>
+                            <div class="p-3 bg-indigo-50 rounded-lg">
+                                <p class="font-semibold text-indigo-800">GIS Day Workshop</p>
+                                <p class="text-sm">Nov 15, 2023 | GIS Lab</p>
+                                <p class="text-xs mt-1">Hands-on training with QGIS and remote sensing data</p>
+                            </div>
+                            <div class="p-3 bg-indigo-50 rounded-lg">
+                                <p class="font-semibold text-indigo-800">Annual Geography Symposium</p>
+                                <p class="text-sm">Dec 5-6, 2023 | Conference Hall</p>
+                                <p class="text-xs mt-1">Student research presentations and guest lectures</p>
+                            </div>
+                        </div>
+                        <p class="mt-2">All students are welcome to attend. Some events may require prior registration.</p>`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Thank you responses
+                if (lowerInput.includes('thank') || lowerInput.includes('thanks')) {
+                    return {
+                        content: `You're very welcome${userName}! <span class="waving">😊</span> Is there anything else I can help you with?`,
+                        showContactForm: false
+                    };
+                }
+                
+                // Default response (unknown question)
+                return {
+                    content: `${userName}, I'm sorry, I couldn't find specific information about that in our Geography Department resources. Would you like me to connect you with someone who might know?`,
+                    showContactForm: true
+                };
+            }
+            
+            // Initialize chat with welcome message
+            function initChat() {
+                if (conversationHistory.length === 0) {
+                    if (userData.name) {
+                        addMessage(`Welcome back, ${userData.name}! I'm your Geography Department assistant. How can I help you today?`, false, false);
+                    } else {
+                        addMessage(`Hello! I'm your Geography Department assistant. I can help you with information about our courses, faculty, research projects, and more. What's your name?`, false, false);
+                    }
+                    
+                    // Add some quick suggestion buttons
+                    const suggestionDiv = document.createElement('div');
+                    suggestionDiv.classList.add('message-animate', 'bg-indigo-50', 'p-4', 'rounded-lg', 'max-w-3xl');
+                    suggestionDiv.innerHTML = `
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-700">You might want to ask about:</p>
+                                <div class="mt-2 flex flex-wrap gap-2">
+                                    <button class="suggestion-btn px-3 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full text-sm transition btn-hover-effect">
+                                        What courses do you offer?
+                                    </button>
+                                    <button class="suggestion-btn px-3 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full text-sm transition btn-hover-effect">
+                                        Who are the faculty members?
+                                    </button>
+                                    <button class="suggestion-btn px-3 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full text-sm transition btn-hover-effect">
+                                        Tell me about research opportunities
+                                    </button>
+                                    <button class="suggestion-btn px-3 py-1 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full text-sm transition btn-hover-effect">
+                                        What facilities are available?
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    chatContainer.appendChild(suggestionDiv);
+                    
+                    // Add event listeners to suggestion buttons
+                    const suggestionBtns = suggestionDiv.querySelectorAll('.suggestion-btn');
+                    suggestionBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            userInput.value = this.textContent;
+                            processInput();
+                        });
+                    });
+                } else {
+                    // Load conversation history
+                    conversationHistory.forEach(msg => {
+                        addMessage(msg.content, msg.isUser, false);
+                    });
+                }
+            }
+            
+            // Clear chat history
+            function clearChat() {
+                if (confirm('Are you sure you want to clear the conversation history?')) {
+                    chatContainer.innerHTML = '';
+                    conversationHistory = [];
+                    localStorage.removeItem('geoAssistantHistory');
+                    initChat();
+                }
+            }
+            
+            // Event listeners
+            sendBtn.addEventListener('click', processInput);
+            
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    processInput();
+                }
+            });
+            
+            // Voice input
+            voiceBtn.addEventListener('click', function() {
+                if (!SpeechRecognition) {
+                    addMessage("Your browser doesn't support voice recognition. Please try Chrome or Edge.", false);
+                    return;
+                }
+                
+                if (isListening) {
+                    recognition.stop();
+                } else {
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        addMessage("Error starting voice recognition. Please ensure your microphone is connected and try again.", false);
+                    }
+                }
+            });
+            
+            // Clear chat button
+            clearChatBtn.addEventListener('click', clearChat);
+            
+            // Help button
+            helpBtn.addEventListener('click', function() {
+                helpNotification.classList.add('hidden');
+                addMessage("Here are some tips for using me effectively:\n\n1. Ask specific questions for better answers\n2. Use the Expert Mode toggle for more technical responses\n3. Try voice input for quick questions\n4. The 'Quick Facts' button gives department statistics\n5. You can always ask to connect with a human", false);
+            });
+            
+            // Quick facts button
+            quickFactsBtn.addEventListener('click', function() {
+                factsModal.classList.remove('hidden');
+            });
+            
+            closeFacts.addEventListener('click', function() {
+                factsModal.classList.add('hidden');
+            });
+            
+            closeFactsBtn.addEventListener('click', function() {
+                factsModal.classList.add('hidden');
+            });
+            
+            // Events button
+            eventsBtn.addEventListener('click', function() {
+                const response = generateResponse('events');
+                addMessage(response.content);
+            });
+            
+            // Feedback button
+            feedbackBtn.addEventListener('click', function() {
+                feedbackModal.classList.remove('hidden');
+            });
+            
+            closeFeedback.addEventListener('click', function() {
+                feedbackModal.classList.add('hidden');
+            });
+            
+            cancelFeedback.addEventListener('click', function() {
+                feedbackModal.classList.add('hidden');
+            });
+            
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const rating = document.querySelector('.emoji-btn.active')?.dataset.rating || '0';
+                const message = document.getElementById('feedback-message').value;
+                
+                // In a real app, you would send this to your backend
+                console.log('Feedback submitted:', { rating, message });
+                
+                // Show thank you message
+                addMessage("Thank you for your feedback! We'll use it to improve the assistant.", false);
+                
+                // Reset form
+                document.querySelectorAll('.emoji-btn').forEach(btn => btn.classList.remove('active'));
+                document.getElementById('feedback-message').value = '';
+                
+                feedbackModal.classList.add('hidden');
+            });
+            
+            // Emoji rating buttons
+            document.querySelectorAll('.emoji-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // History button
+            historyBtn.addEventListener('click', function() {
+                if (conversationHistory.length > 1) {
+                    const historyCount = conversationHistory.filter(msg => msg.isUser).length;
+                    addMessage(`You've had ${historyCount} conversations with me so far. The last one was about: "${conversationHistory[conversationHistory.length - 2].content}"`, false);
+                } else {
+                    addMessage("We haven't chatted much yet. Ask me anything about the Geography Department!", false);
+                }
+            });
+            
+            // Attach button (placeholder functionality)
+            attachBtn.addEventListener('click', function() {
+                addMessage("The file attachment feature is coming soon! For now, you can describe what you'd like to share.", false);
+            });
+            
+            // Initialize the chat
+            initChat();
+        });
+    </script>
+</body>
+</html>
