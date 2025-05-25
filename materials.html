@@ -1,13 +1,548 @@
-<html>
-  <head>
-    <title>Class Materials</title>
-  </head>
-  <body>
-    <font family="Serif">
-    <h1 style="text-align:center;">Syllabus and Study Materials</h1>
-      <h1 style="text-align:center;">पाठ्यक्रम एवं अध्ययन सामग्री</h1>
-      <hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Geography Study Materials | SBPG College</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Geography study materials for UG and PG students">
+    <meta name="keywords" content="Geography, Physical Geography, Human Geography, GIS, Remote Sensing, Study Materials">
+    <meta name="author" content="Department of Geography, SBPG College">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .animate-slideIn {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #1e3a8a, #1e40af, #1d4ed8, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .search-highlight {
+            background-color: #fef08a;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        
+        .loading-spinner {
+            border-top-color: #3b82f6;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg text-gray-100">
+    <!-- Header -->
+    <header class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl sm:text-3xl font-bold animate-slideIn">
+                <i class="fas fa-globe-asia mr-2"></i> Geography Study Materials
+            </h1>
+            <a href="https://geography-sbpgcollege.github.io/home" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-all flex items-center">
+                <i class="fas fa-home mr-2"></i> Home
+            </a>
+        </div>
+    </header>
 
-    </font>
-  </body>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search and Filter Section -->
+        <div class="mb-10 bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-fadeIn">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-1 relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Search materials by topic, author, or keyword..." 
+                           class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-300">
+                </div>
+                <select id="categoryFilter" class="bg-white/10 border border-white/20 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="all">All Categories</option>
+                    <option value="physical">Physical Geography</option>
+                    <option value="human">Human Geography</option>
+                    <option value="gis">GIS & Remote Sensing</option>
+                    <option value="economic">Economic Geography</option>
+                    <option value="environmental">Environmental Geography</option>
+                    <option value="regional">Regional Geography</option>
+                </select>
+            </div>
+            
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-sm text-white/80">Quick filters:</span>
+                <button class="filter-tag px-3 py-1 bg-blue-600/30 hover:bg-blue-600/50 rounded-full text-sm transition-all" data-tag="notes">Notes</button>
+                <button class="filter-tag px-3 py-1 bg-blue-600/30 hover:bg-blue-600/50 rounded-full text-sm transition-all" data-tag="lecture">Lecture Slides</button>
+                <button class="filter-tag px-3 py-1 bg-blue-600/30 hover:bg-blue-600/50 rounded-full text-sm transition-all" data-tag="research">Research Papers</button>
+                <button class="filter-tag px-3 py-1 bg-blue-600/30 hover:bg-blue-600/50 rounded-full text-sm transition-all" data-tag="map">Maps</button>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="flex justify-center items-center py-10 hidden">
+            <div class="w-12 h-12 border-4 border-white/30 rounded-full loading-spinner"></div>
+        </div>
+
+        <!-- Materials Grid -->
+        <div id="materialsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Materials will be dynamically loaded here -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center py-10">
+            <div class="inline-block p-6 bg-white/10 rounded-xl">
+                <i class="fas fa-file-alt text-4xl mb-4 text-white/50"></i>
+                <h3 class="text-xl font-semibold mb-2">No materials found</h3>
+                <p class="text-white/70">Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="mt-10 flex justify-center gap-2 hidden">
+            <button class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all"><i class="fas fa-chevron-left"></i></button>
+            <button class="px-4 py-2 bg-blue-600 rounded-lg">1</button>
+            <button class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all">2</button>
+            <button class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all">3</button>
+            <button class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/20 py-6 mt-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">© 2023 Department of Geography, SBPG College, Varanasi</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div id="downloadModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 rounded-xl max-w-md w-full mx-4 animate-fadeIn border border-white/10">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold" id="modalTitle">Download Material</h3>
+                    <button id="closeModal" class="text-white/50 hover:text-white"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="mb-6">
+                    <p id="modalDescription" class="text-white/80 mb-4">You are about to download:</p>
+                    <div class="bg-white/5 p-4 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-pdf text-3xl text-red-500 mr-4"></i>
+                            <div>
+                                <h4 class="font-medium" id="modalFileName">Geography of India - Complete Notes.pdf</h4>
+                                <p class="text-sm text-white/60" id="modalFileSize">4.2 MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a id="downloadBtn" href="#" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> Download Now
+                    </a>
+                    <button class="flex-1 border border-white/20 hover:bg-white/10 text-white font-medium py-3 px-4 rounded-lg transition-colors">
+                        <i class="fas fa-bookmark"></i> Save for Later
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - in a real implementation, this would come from your server/API
+        const materialsData = [
+            {
+                id: 1,
+                title: "Physical Geography: Geomorphology",
+                author: "Dr. Uma Kant Singh",
+                category: "physical",
+                tags: ["notes", "ug"],
+                description: "Complete notes on geomorphological processes and landforms",
+                file: "geomorphology_notes.pdf",
+                size: "3.5 MB",
+                pages: 42,
+                downloads: 124,
+                date: "2023-05-15"
+            },
+            {
+                id: 2,
+                title: "Human Geography: Population Studies",
+                author: "Dr. R.K. Sharma",
+                category: "human",
+                tags: ["lecture", "pg"],
+                description: "Lecture slides on population geography with case studies",
+                file: "population_geography_slides.pdf",
+                size: "8.2 MB",
+                pages: 68,
+                downloads: 89,
+                date: "2023-04-22"
+            },
+            {
+                id: 3,
+                title: "GIS Fundamentals",
+                author: "Prof. A. Kumar",
+                category: "gis",
+                tags: ["notes", "research"],
+                description: "Introduction to Geographic Information Systems concepts",
+                file: "gis_fundamentals.pdf",
+                size: "5.1 MB",
+                pages: 56,
+                downloads: 156,
+                date: "2023-06-10"
+            },
+            {
+                id: 4,
+                title: "Remote Sensing Applications",
+                author: "Dr. S. Patel",
+                category: "gis",
+                tags: ["lecture", "research"],
+                description: "Advanced applications of remote sensing in geography",
+                file: "remote_sensing_applications.pdf",
+                size: "10.3 MB",
+                pages: 72,
+                downloads: 67,
+                date: "2023-03-18"
+            },
+            {
+                id: 5,
+                title: "Economic Geography of India",
+                author: "Dr. M. Verma",
+                category: "economic",
+                tags: ["notes", "map"],
+                description: "Comprehensive notes on India's economic geography with maps",
+                file: "india_economic_geography.pdf",
+                size: "6.8 MB",
+                pages: 48,
+                downloads: 112,
+                date: "2023-05-30"
+            },
+            {
+                id: 6,
+                title: "Environmental Geography",
+                author: "Dr. P. Choudhary",
+                category: "environmental",
+                tags: ["notes", "ug"],
+                description: "Human-environment interactions and sustainability",
+                file: "environmental_geography.pdf",
+                size: "4.5 MB",
+                pages: 39,
+                downloads: 94,
+                date: "2023-04-05"
+            },
+            {
+                id: 7,
+                title: "Regional Geography: South Asia",
+                author: "Dr. Uma Kant Singh",
+                category: "regional",
+                tags: ["lecture", "pg"],
+                description: "Detailed regional study of South Asian countries",
+                file: "south_asia_regional.pdf",
+                size: "7.2 MB",
+                pages: 63,
+                downloads: 78,
+                date: "2023-06-22"
+            },
+            {
+                id: 8,
+                title: "Climatology: Atmospheric Processes",
+                author: "Dr. R. Yadav",
+                category: "physical",
+                tags: ["notes", "ug"],
+                description: "Fundamentals of atmospheric processes and weather systems",
+                file: "climatology_atmospheric.pdf",
+                size: "4.9 MB",
+                pages: 45,
+                downloads: 105,
+                date: "2023-05-08"
+            },
+            {
+                id: 9,
+                title: "Urban Geography",
+                author: "Dr. S. Mishra",
+                category: "human",
+                tags: ["research", "pg"],
+                description: "Research paper on urban spatial structures and patterns",
+                file: "urban_geography_research.pdf",
+                size: "3.2 MB",
+                pages: 28,
+                downloads: 56,
+                date: "2023-04-15"
+            }
+        ];
+
+        // DOM Elements
+        const materialsGrid = document.getElementById('materialsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const noResults = document.getElementById('noResults');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const downloadModal = document.getElementById('downloadModal');
+        const closeModal = document.getElementById('closeModal');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalFileName = document.getElementById('modalFileName');
+        const modalFileSize = document.getElementById('modalFileSize');
+
+        // Current filter state
+        let currentSearch = '';
+        let currentCategory = 'all';
+        let currentTags = [];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMaterials(materialsData);
+            
+            // Set up event listeners
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase();
+                filterMaterials();
+            });
+            
+            categoryFilter.addEventListener('change', (e) => {
+                currentCategory = e.target.value;
+                filterMaterials();
+            });
+            
+            filterTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const tagValue = tag.dataset.tag;
+                    if (currentTags.includes(tagValue)) {
+                        currentTags = currentTags.filter(t => t !== tagValue);
+                        tag.classList.remove('bg-blue-600/50', 'text-white');
+                        tag.classList.add('bg-blue-600/30');
+                    } else {
+                        currentTags.push(tagValue);
+                        tag.classList.remove('bg-blue-600/30');
+                        tag.classList.add('bg-blue-600/50', 'text-white');
+                    }
+                    filterMaterials();
+                });
+            });
+            
+            closeModal.addEventListener('click', () => {
+                downloadModal.classList.add('hidden');
+            });
+        });
+
+        // Filter materials based on current criteria
+        function filterMaterials() {
+            loadingIndicator.classList.remove('hidden');
+            materialsGrid.classList.add('opacity-50');
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                let filtered = materialsData.filter(material => {
+                    // Search filter
+                    const matchesSearch = 
+                        material.title.toLowerCase().includes(currentSearch) ||
+                        material.author.toLowerCase().includes(currentSearch) ||
+                        material.description.toLowerCase().includes(currentSearch);
+                    
+                    // Category filter
+                    const matchesCategory = 
+                        currentCategory === 'all' || 
+                        material.category === currentCategory;
+                    
+                    // Tags filter
+                    const matchesTags = 
+                        currentTags.length === 0 || 
+                        currentTags.some(tag => material.tags.includes(tag));
+                    
+                    return matchesSearch && matchesCategory && matchesTags;
+                });
+                
+                renderMaterials(filtered);
+                loadingIndicator.classList.add('hidden');
+                materialsGrid.classList.remove('opacity-50');
+            }, 500);
+        }
+
+        // Render materials to the grid
+        function renderMaterials(materials) {
+            materialsGrid.innerHTML = '';
+            
+            if (materials.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            noResults.classList.add('hidden');
+            
+            materials.forEach((material, index) => {
+                const card = document.createElement('div');
+                card.className = `bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg overflow-hidden card-hover animate-fadeIn`;
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                // Highlight search term in title and description
+                const highlightedTitle = highlightSearchTerm(material.title, currentSearch);
+                const highlightedDesc = highlightSearchTerm(material.description, currentSearch);
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="inline-block px-2 py-1 text-xs font-medium rounded-full mb-2 ${getCategoryColor(material.category)}">
+                                ${getCategoryName(material.category)}
+                            </span>
+                            <h3 class="text-xl font-bold mb-1">${highlightedTitle}</h3>
+                            <p class="text-sm text-white/70 mb-2">By ${material.author}</p>
+                        </div>
+                        <div class="text-4xl text-white/20">
+                            ${getFileIcon(material.tags)}
+                        </div>
+                    </div>
+                    
+                    <p class="text-white/80 mb-4">${highlightedDesc}</p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${material.tags.map(tag => `
+                            <span class="inline-block px-2 py-1 text-xs rounded-full bg-white/10">${tag}</span>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-sm text-white/60 mb-4">
+                        <span><i class="fas fa-file-alt mr-1"></i> ${material.pages} pages</span>
+                        <span><i class="fas fa-download mr-1"></i> ${material.downloads} downloads</span>
+                        <span><i class="fas fa-calendar-alt mr-1"></i> ${formatDate(material.date)}</span>
+                    </div>
+                    
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors download-btn" 
+                            data-id="${material.id}">
+                        <i class="fas fa-download mr-2"></i> Download (${material.size})
+                    </button>
+                `;
+                
+                materialsGrid.appendChild(card);
+            });
+            
+            // Add event listeners to download buttons
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const materialId = e.target.closest('.download-btn').dataset.id;
+                    openDownloadModal(materialId);
+                });
+            });
+        }
+
+        // Highlight search term in text
+        function highlightSearchTerm(text, term) {
+            if (!term) return text;
+            
+            const regex = new RegExp(term, 'gi');
+            return text.replace(regex, match => 
+                `<span class="search-highlight">${match}</span>`
+            );
+        }
+
+        // Get category color
+        function getCategoryColor(category) {
+            const colors = {
+                physical: 'bg-green-600/20 text-green-400',
+                human: 'bg-purple-600/20 text-purple-400',
+                gis: 'bg-blue-600/20 text-blue-400',
+                economic: 'bg-yellow-600/20 text-yellow-400',
+                environmental: 'bg-teal-600/20 text-teal-400',
+                regional: 'bg-red-600/20 text-red-400'
+            };
+            return colors[category] || 'bg-gray-600/20 text-gray-400';
+        }
+
+        // Get category name
+        function getCategoryName(category) {
+            const names = {
+                physical: 'Physical Geo',
+                human: 'Human Geo',
+                gis: 'GIS & RS',
+                economic: 'Economic Geo',
+                environmental: 'Environmental',
+                regional: 'Regional Geo'
+            };
+            return names[category] || category;
+        }
+
+        // Get file icon based on tags
+        function getFileIcon(tags) {
+            if (tags.includes('lecture')) return '<i class="fas fa-chalkboard-teacher"></i>';
+            if (tags.includes('research')) return '<i class="fas fa-microscope"></i>';
+            if (tags.includes('map')) return '<i class="fas fa-map-marked-alt"></i>';
+            return '<i class="fas fa-file-pdf"></i>';
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        // Open download modal
+        function openDownloadModal(materialId) {
+            const material = materialsData.find(m => m.id == materialId);
+            if (!material) return;
+            
+            modalTitle.textContent = `Download: ${material.title}`;
+            modalDescription.textContent = material.description;
+            modalFileName.textContent = material.file;
+            modalFileSize.textContent = material.size;
+            
+            // In a real implementation, this would point to your actual file URL
+            downloadBtn.href = `/materials/${material.file}`;
+            downloadBtn.download = material.file;
+            
+            downloadModal.classList.remove('hidden');
+        }
+    </script>
+</body>
 </html>
