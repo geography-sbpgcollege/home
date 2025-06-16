@@ -2,12 +2,95 @@
 <html>
 <head>
     <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+        }
+        
+        /* Mobile-specific adjustments */
+        @media screen and (max-width: 768px) {
+            .iframe-container {
+                height: 100vh;
+                height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            }
+            
+            iframe {
+                transform: scale(1);
+                transform-origin: 0 0;
+            }
+        }
+        
+        /* Prevent scrolling on the parent page */
+        body {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-   <iframe src="https://script.google.com/a/~/macros/s/AKfycbw6OpHQJYk5H7_mQrup_bPigi8kWAiRHhLcYYhQpesyTI9VxG2imRfVunJNbx25CZCzRw/exec"
-       width="100%"
-       height="100%"
-       allowfullscreen="true"
-       style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
-</body>
+  <div class="iframe-container">
+        <iframe 
+            src="https://script.google.com/macros/s/AKfycbycCDobhjZLicNVdrz8PetY5Sk5i-3ouyMCFsR9uKZLlsG8Q24G5Ba0P5CSamzb3CG7PA/exec"
+            allowfullscreen="true"
+            allow="fullscreen"
+            loading="lazy">
+        </iframe>
+      <script>
+           <script>
+        // Remove the automatic fullscreen request as it can interfere with mobile UX
+        // Instead, let users manually enter fullscreen if needed
+        
+        // Optional: Add fullscreen toggle button for desktop users
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure the iframe loads properly on mobile
+            const iframe = document.querySelector('iframe');
+            
+            // Handle orientation changes on mobile
+            window.addEventListener('orientationchange', function() {
+                setTimeout(function() {
+                    // Force a redraw after orientation change
+                    iframe.style.height = '99.9%';
+                    setTimeout(function() {
+                        iframe.style.height = '100%';
+                    }, 10);
+                }, 100);
+            });
+            
+            // Prevent zoom on double tap for better mobile experience
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        });
+    </script>
+      </script>
 </html>
