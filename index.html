@@ -40,7 +40,29 @@
         background-color: rgba(0, 0, 0, 0.5);
     }
 </style>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA3qWRZc777b0jpML6XPTfXXAjx2DTFThg",
+    authDomain: "mygeography-dpdns-org.firebaseapp.com",
+    projectId: "mygeography-dpdns-org",
+    storageBucket: "mygeography-dpdns-org.firebasestorage.app",
+    messagingSenderId: "876040416043",
+    appId: "1:876040416043:web:169149e538dbc96a9a336e",
+    measurementId: "G-XH2L03BX81"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
   </head>
 <body>
   <body>
