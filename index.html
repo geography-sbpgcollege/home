@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department of Geography | Shri Baldeo P.G. College</title>
+    <title>Department of Geography | Scholarly Portal</title>
     
-    <meta name="description" content="Official website of the Department of Geography, Shri Baldeo P.G. College Baragaon, Varanasi.">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Official academic portal of the Department of Geography, Shri Baldeo P.G. College Baragaon, Varanasi.">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] },
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        serif: ['Crimson Pro', 'serif'] 
+                    },
                     colors: {
-                        'university-blue': '#0f172a',
-                        'university-gold': '#b45309',
-                        'university-crimson': '#7f1d1d',
+                        'journal-navy': '#0A192F',
+                        'journal-maroon': '#800000',
+                        'journal-paper': '#FAFAFA',
+                        'journal-border': '#EAEAEA'
                     }
                 }
             }
@@ -32,392 +35,180 @@
     </script>
 
     <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #f8fafc; transition: all 0.3s ease; }
-        
-        /* High Contrast Mode Classes */
-        body.high-contrast { background-color: #000; color: #fff; }
-        body.high-contrast .bg-white { background-color: #111 !important; border-color: #fff !important; }
-        body.high-contrast .text-slate-800, body.high-contrast .text-slate-500 { color: #fff !important; }
-        body.high-contrast .bg-university-blue { background-color: #000 !important; border-bottom: 2px solid #fff; }
-
-        /* Animations */
-        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1); }
-        
-        .notice-container { overflow: hidden; white-space: nowrap; }
-        .notice-text { display: inline-block; animation: formal-ticker 30s linear infinite; }
-        @keyframes formal-ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .notice-container:hover .notice-text { animation-play-state: paused; }
+        body { background-color: #FAFAFA; color: #333333; }
+        .journal-link { color: #800000; transition: color 0.2s ease; }
+        .journal-link:hover { color: #0A192F; text-decoration: underline; }
+        .article-card { border-left: 3px solid transparent; transition: all 0.2s ease; }
+        .article-card:hover { border-left-color: #800000; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-<body class="font-sans text-slate-800 antialiased flex flex-col min-h-screen text-base" id="main-body">
+<body class="font-sans antialiased flex flex-col min-h-screen">
 
-    <div class="bg-slate-900 text-slate-400 text-xs py-1 px-6 border-b border-slate-700 flex justify-between items-center z-50 relative">
-        <div class="flex space-x-4 items-center">
-            <span class="font-semibold text-white">Govt. of Uttar Pradesh Portal Guidelines</span>
-            <div class="hidden sm:flex space-x-2 border-l border-slate-600 pl-4">
-                <button onclick="changeFontSize(-1)" class="hover:text-white px-1" title="Decrease Font">A-</button>
-                <button onclick="changeFontSize(0)" class="hover:text-white px-1 text-white font-bold" title="Default Font">A</button>
-                <button onclick="changeFontSize(1)" class="hover:text-white px-1" title="Increase Font">A+</button>
-                <button onclick="toggleHighContrast()" class="hover:text-white ml-2 border border-slate-600 px-2 rounded" title="High Contrast"><i class="fas fa-adjust"></i></button>
-            </div>
+    <div class="bg-journal-navy text-slate-300 text-[11px] py-1 px-4 md:px-8 flex justify-between items-center font-sans tracking-wide">
+        <div class="flex space-x-4">
+            <span>ISSN (Online): XXXX-XXXX (Pending)</span>
+            <span class="hidden sm:inline">|</span>
+            <span class="hidden sm:inline">Affiliated with MGKV University</span>
         </div>
-        <div class="flex space-x-4 items-center">
-            <select class="bg-slate-800 text-white text-xs border border-slate-600 rounded px-2 py-1 outline-none">
-                <option value="en">English</option>
-                <option value="hi">हिन्दी (Hindi)</option>
-            </select>
-            <a href="webmail.html" class="hover:text-white transition hidden md:block"><i class="fas fa-envelope mr-1"></i> Webmail</a>
+        <div class="flex space-x-4">
+            <a href="accounts.html" class="hover:text-white transition">Author/Student Login</a>
+            <a href="#" class="hover:text-white transition">Editorial Board</a>
         </div>
     </div>
 
-    <header class="bg-white shadow-md sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col lg:flex-row justify-between items-center">
-            <div class="flex items-center space-x-5">
-                <div class="w-20 h-20 bg-university-blue rounded-full flex items-center justify-center text-university-gold text-4xl shadow-inner border-4 border-slate-100 relative overflow-hidden">
-                    <i class="fas fa-globe-asia z-10"></i>
-                    <div class="absolute inset-0 border-[3px] border-dashed border-university-gold opacity-30 animate-spin-slow rounded-full"></div>
-                </div>
-                <div>
-                    <h2 class="text-xs font-bold tracking-[0.2em] text-university-gold uppercase mb-1">Shri Baldeo P.G. College Baragaon, Varanasi</h2>
-                    <h1 class="text-3xl lg:text-4xl font-serif font-black text-university-blue leading-none">Department of Geography</h1>
-                    <p class="text-sm text-slate-500 font-medium mt-1">Affiliated with Mahatma Gandhi Kashi Vidyapith (MGKV)</p>
-                </div>
+    <header class="bg-white border-b border-journal-border pt-8 pb-6 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div class="max-w-3xl">
+                <h2 class="text-xs font-bold tracking-widest text-slate-500 uppercase mb-2 font-sans">Shri Baldeo P.G. College Baragaon, Varanasi</h2>
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-journal-navy leading-tight mb-2">Department of Geography</h1>
+                <p class="text-lg font-serif text-slate-600 italic">An Academic Portal for Spatial Sciences, Research, and Education</p>
             </div>
             
-            <nav class="hidden lg:flex space-x-6 mt-4 lg:mt-0 font-semibold text-sm text-slate-700">
-                <a href="#about" class="hover:text-university-gold transition border-b-2 border-transparent hover:border-university-gold pb-1">About</a>
-                <a href="#programs" class="hover:text-university-gold transition border-b-2 border-transparent hover:border-university-gold pb-1">Academic Programs</a>
-                <a href="#research" class="hover:text-university-gold transition border-b-2 border-transparent hover:border-university-gold pb-1">Research & Labs</a>
-                <a href="faculty.html" class="hover:text-university-gold transition border-b-2 border-transparent hover:border-university-gold pb-1">Faculty</a>
-                <a href="accounts.html" class="bg-university-blue text-white px-4 py-2 rounded shadow hover:bg-slate-800 transition">Portal Login</a>
-            </nav>
+            <div class="hidden md:flex flex-col items-center justify-center mt-4 md:mt-0">
+                <div class="w-24 h-24 border-2 border-journal-navy rounded-full flex items-center justify-center text-journal-maroon text-4xl mb-2">
+                    <i class="fas fa-globe-asia"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-journal-navy">Est. 1980</span>
+            </div>
         </div>
     </header>
 
-    <div class="bg-university-crimson text-white py-2 px-6 flex items-center shadow-inner">
-        <div class="text-xs font-bold uppercase pr-4 border-r border-red-500 whitespace-nowrap flex items-center">
-            <i class="fas fa-bell animate-pulse mr-2 text-university-gold"></i> Urgent Notices
+    <nav class="bg-white border-b border-journal-border sticky top-0 z-40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 flex space-x-8 overflow-x-auto text-sm font-semibold text-journal-navy py-3">
+            <a href="index.html" class="whitespace-nowrap hover:text-journal-maroon transition">Home</a>
+            <a href="about.html" class="whitespace-nowrap hover:text-journal-maroon transition">About the Department</a>
+            <a href="academics.html" class="whitespace-nowrap hover:text-journal-maroon transition">Academic Programs</a>
+            <a href="faculty.html" class="whitespace-nowrap hover:text-journal-maroon transition">Faculty & Research</a>
+            <a href="iirs.html" class="whitespace-nowrap hover:text-journal-maroon transition">IIRS Nodal Center</a>
+            <a href="books.html" class="whitespace-nowrap hover:text-journal-maroon transition">Digital Archives & Books</a>
+            <a href="notice.html" class="whitespace-nowrap hover:text-journal-maroon transition">Notices</a>
         </div>
-        <div class="notice-container w-full text-sm font-medium ml-4 cursor-pointer">
-            <span class="notice-text">
-                <i class="fas fa-circle text-[6px] mx-3 align-middle text-university-gold"></i> Ph.D. Entrance Examination (RET) admit cards are now available on the university portal.
-                <i class="fas fa-circle text-[6px] mx-3 align-middle text-university-gold"></i> Registration for the "Advanced Remote Sensing" workshop closes on March 25th.
-                <i class="fas fa-circle text-[6px] mx-3 align-middle text-university-gold"></i> M.A./M.Sc. Semester II Practical Examination schedule has been updated.
-            </span>
-        </div>
-    </div>
+    </nav>
 
-    <section class="relative bg-university-blue text-white py-32 px-6 overflow-hidden border-b-8 border-university-gold">
-        <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.83v58.34l-.83.83H5.373l-.83-.83V.83l.83-.83h49.254zM53.797 1.66H6.203v56.68h47.594V1.66zM24 24h12v12H24V24z\' fill=\'%23ffffff\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+    <main class="flex-grow max-w-6xl mx-auto px-4 md:px-8 py-10 w-full grid grid-cols-1 lg:grid-cols-4 gap-10">
         
-        <div class="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center">
-            <div class="md:w-2/3 pr-8 text-center md:text-left">
-                <span class="inline-block py-1 px-3 border border-university-gold text-university-gold text-xs font-bold uppercase tracking-widest rounded mb-6">Established 1980</span>
-                <h2 class="text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight drop-shadow-lg">Pioneering Spatial <br><span class="text-university-gold">Intelligence</span></h2>
-                <p class="text-lg text-slate-300 font-light mb-10 leading-relaxed max-w-xl">
-                    A center of excellence dedicated to understanding the earth system, human-environment interactions, and geospatial technologies. We shape the analytical minds that map the future.
+        <div class="lg:col-span-3 space-y-10">
+            
+            <section class="border-b border-journal-border pb-8">
+                <h3 class="text-2xl font-serif font-bold text-journal-navy mb-4">Aims and Scope</h3>
+                <p class="font-serif text-lg leading-relaxed text-slate-700 mb-4">
+                    The Department of Geography at Shri Baldeo P.G. College is dedicated to advancing the understanding of earth surface processes, human-environment interactions, and geospatial technologies. We offer rigorous academic training for both undergraduate and postgraduate scholars, fostering research that addresses contemporary environmental and regional challenges.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <button class="px-8 py-4 bg-university-gold hover:bg-yellow-700 text-white font-bold rounded shadow-xl transition duration-300 flex items-center justify-center">
-                        <i class="fas fa-graduation-cap mr-2"></i> Apply for 2026 Admissions
-                    </button>
-                    <button class="px-8 py-4 bg-transparent border-2 border-slate-400 hover:border-white hover:bg-slate-800 text-white font-bold rounded transition duration-300 flex items-center justify-center">
-                        <i class="fas fa-download mr-2"></i> Download Prospectus
-                    </button>
+                <div class="flex space-x-4">
+                    <a href="academics.html" class="inline-block border border-journal-navy text-journal-navy px-4 py-2 text-sm font-semibold hover:bg-journal-navy hover:text-white transition">Explore Curriculum</a>
+                    <a href="research.html" class="inline-block bg-journal-maroon text-white px-4 py-2 text-sm font-semibold hover:bg-red-900 transition">Latest Research</a>
                 </div>
-            </div>
-            
-            <div class="md:w-1/3 mt-12 md:mt-0 w-full">
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-2xl">
-                    <h3 class="font-serif font-bold text-xl mb-4 text-university-gold border-b border-white/20 pb-2">Student Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a href="syllabus.html" class="flex items-center justify-between text-slate-200 hover:text-white group"><span class="font-medium"><i class="fas fa-file-pdf w-6 text-red-400"></i> UG/PG Syllabus</span> <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition"></i></a></li>
-                        <li><a href="timetable.html" class="flex items-center justify-between text-slate-200 hover:text-white group"><span class="font-medium"><i class="fas fa-calendar-alt w-6 text-blue-400"></i> Class Timetable</span> <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition"></i></a></li>
-                        <li><a href="iirs.html" class="flex items-center justify-between text-slate-200 hover:text-white group"><span class="font-medium"><i class="fas fa-satellite w-6 text-indigo-400"></i> IIRS Edusat Portal</span> <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition"></i></a></li>
-                        <li><a href="books.html" class="flex items-center justify-between text-slate-200 hover:text-white group"><span class="font-medium"><i class="fas fa-book-open w-6 text-emerald-400"></i> Digital Library</span> <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section class="bg-white py-12 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-200">
-            <div class="p-4">
-                <div class="text-4xl font-serif font-black text-university-blue mb-2 counter" data-target="45">0</div>
-                <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Years of Legacy</div>
-            </div>
-            <div class="p-4">
-                <div class="text-4xl font-serif font-black text-university-blue mb-2 counter" data-target="1500">0</div><span class="text-4xl font-serif font-black text-university-blue">+</span>
-                <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Global Alumni</div>
-            </div>
-            <div class="p-4">
-                <div class="text-4xl font-serif font-black text-university-blue mb-2 counter" data-target="250">0</div><span class="text-4xl font-serif font-black text-university-blue">+</span>
-                <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Research Papers</div>
-            </div>
-            <div class="p-4">
-                <div class="text-4xl font-serif font-black text-university-blue mb-2 counter" data-target="3">0</div>
-                <div class="text-sm font-bold text-slate-500 uppercase tracking-widest">Advanced Labs</div>
-            </div>
-        </div>
-    </section>
-
-    <main class="flex-grow max-w-7xl mx-auto px-6 py-16 w-full space-y-20">
-        
-        <section id="programs">
-            <div class="flex items-center justify-between mb-8 border-b-2 border-slate-200 pb-4">
-                <h2 class="text-3xl font-serif font-bold text-university-blue">Academics & Portals</h2>
-                <a href="academics.html" class="text-university-gold font-bold hover:underline hidden sm:block">View All Programs &rarr;</a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="hover-lift bg-white rounded-xl border border-slate-200 p-8 cursor-pointer relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-blue-50 transition"></div>
-                    <i class="fas fa-user-graduate text-4xl text-university-blue mb-4"></i>
-                    <h3 class="text-xl font-serif font-bold text-slate-800 mb-2">Undergraduate (B.A./B.Sc.)</h3>
-                    <p class="text-slate-500 text-sm mb-4">Comprehensive foundation in physical and human geography, cartography, and regional studies.</p>
-                </div>
-
-                <div class="hover-lift bg-white rounded-xl border border-slate-200 p-8 cursor-pointer relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-emerald-50 transition"></div>
-                    <i class="fas fa-microscope text-4xl text-emerald-700 mb-4"></i>
-                    <h3 class="text-xl font-serif font-bold text-slate-800 mb-2">Postgraduate (M.A./M.Sc.)</h3>
-                    <p class="text-slate-500 text-sm mb-4">Advanced specialization in Remote Sensing, Urban Planning, Geomorphology, and Climatology.</p>
-                </div>
-
-                <div class="hover-lift bg-white rounded-xl border border-slate-200 p-8 cursor-pointer relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-indigo-50 transition"></div>
-                    <i class="fas fa-satellite-dish text-4xl text-indigo-700 mb-4"></i>
-                    <h3 class="text-xl font-serif font-bold text-slate-800 mb-2">ISRO-IIRS Nodal Center</h3>
-                    <p class="text-slate-500 text-sm mb-4">Official e-learning distance education program by the Indian Institute of Remote Sensing, Dehradun.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            
-            <div class="lg:col-span-1">
-                <h2 class="text-2xl font-serif font-bold text-university-blue mb-6 border-b-2 border-university-gold pb-2">Upcoming Events</h2>
+            <section>
+                <h3 class="text-2xl font-serif font-bold text-journal-navy mb-6">Recent Academic Materials & Publications</h3>
                 
                 <div class="space-y-4">
-                    <div class="flex bg-white border border-slate-200 rounded shadow-sm hover:shadow-md transition">
-                        <div class="bg-university-blue text-white p-3 text-center flex flex-col justify-center min-w-[80px] rounded-l">
-                            <span class="text-sm font-bold uppercase">Apr</span>
-                            <span class="text-2xl font-black">12</span>
+                    <article class="article-card bg-white border border-journal-border p-5">
+                        <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">PG Syllabus &middot; Semester II</div>
+                        <h4 class="text-xl font-serif font-bold mb-2"><a href="#" class="journal-link">Advanced Geomorphology and Landscape Evolution</a></h4>
+                        <p class="text-sm text-slate-600 mb-3">Author: Dr. Uma Kant Singh &middot; Published: March 2026</p>
+                        <div class="flex space-x-3 text-sm">
+                            <a href="#" class="text-journal-navy font-semibold hover:underline"><i class="fas fa-file-pdf mr-1 text-red-600"></i> PDF Download</a>
+                            <a href="#" class="text-journal-navy font-semibold hover:underline">View Abstract</a>
                         </div>
-                        <div class="p-4">
-                            <h4 class="font-bold text-slate-800 text-sm mb-1 line-clamp-2">National Seminar on Climate Resilient Agriculture</h4>
-                            <p class="text-xs text-slate-500"><i class="fas fa-map-marker-alt text-university-gold"></i> Main Auditorium</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex bg-white border border-slate-200 rounded shadow-sm hover:shadow-md transition">
-                        <div class="bg-slate-200 text-slate-700 p-3 text-center flex flex-col justify-center min-w-[80px] rounded-l">
-                            <span class="text-sm font-bold uppercase">May</span>
-                            <span class="text-2xl font-black">05</span>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="font-bold text-slate-800 text-sm mb-1 line-clamp-2">Annual Geographical Field Tour - Himalayan Belt</h4>
-                            <p class="text-xs text-slate-500"><i class="fas fa-map-marker-alt text-university-gold"></i> Dept. Departure</p>
-                        </div>
-                    </div>
+                    </article>
 
-                    <button class="w-full py-2 mt-4 text-sm font-bold text-university-blue border border-university-blue rounded hover:bg-university-blue hover:text-white transition">View Academic Calendar</button>
+                    <article class="article-card bg-white border border-journal-border p-5">
+                        <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">IIRS Nodal Center &middot; Open Course</div>
+                        <h4 class="text-xl font-serif font-bold mb-2"><a href="#" class="journal-link">Fundamentals of Remote Sensing and GIS Application</a></h4>
+                        <p class="text-sm text-slate-600 mb-3">Provided by: Indian Institute of Remote Sensing (ISRO)</p>
+                        <div class="flex space-x-3 text-sm">
+                            <a href="#" class="text-journal-navy font-semibold hover:underline"><i class="fas fa-link mr-1"></i> Registration Portal</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card bg-white border border-journal-border p-5">
+                        <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Faculty Research &middot; Peer Reviewed</div>
+                        <h4 class="text-xl font-serif font-bold mb-2"><a href="#" class="journal-link">Urban Heat Island Effect in Heritage Cities: A Case Study of Varanasi</a></h4>
+                        <p class="text-sm text-slate-600 mb-3">Department Research Cell &middot; Journal of Environmental Geography</p>
+                        <div class="flex space-x-3 text-sm">
+                            <a href="#" class="text-journal-navy font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i> View DOI</a>
+                        </div>
+                    </article>
                 </div>
-            </div>
-
-            <div class="lg:col-span-2" id="research">
-                <h2 class="text-2xl font-serif font-bold text-university-blue mb-6 border-b-2 border-slate-200 pb-2">Recent Faculty Publications</h2>
                 
-                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                    <ul class="divide-y divide-slate-100">
-                        <li class="p-5 hover:bg-slate-50 transition">
-                            <div class="flex items-start">
-                                <i class="fas fa-file-alt text-slate-300 text-2xl mt-1 mr-4"></i>
-                                <div>
-                                    <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block">Journal of Hydrology</span>
-                                    <h4 class="font-bold text-slate-800 text-base mb-1">Assessing Groundwater Depletion Dynamics in the Gangetic Plain using GRACE Data</h4>
-                                    <p class="text-sm text-slate-600 mb-2">Dr. Uma Kant Singh, et al. (2025)</p>
-                                    <a href="#" class="text-xs text-university-gold font-bold hover:underline"><i class="fas fa-external-link-alt mr-1"></i> View DOI</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="p-5 hover:bg-slate-50 transition">
-                            <div class="flex items-start">
-                                <i class="fas fa-book text-slate-300 text-2xl mt-1 mr-4"></i>
-                                <div>
-                                    <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block">Springer Monograph</span>
-                                    <h4 class="font-bold text-slate-800 text-base mb-1">Urban Heat Island Effect in Heritage Cities: A Case Study of Varanasi</h4>
-                                    <p class="text-sm text-slate-600 mb-2">Department Research Cell (2025)</p>
-                                    <a href="#" class="text-xs text-university-gold font-bold hover:underline"><i class="fas fa-external-link-alt mr-1"></i> Read Abstract</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="bg-slate-50 p-4 text-center border-t border-slate-100">
-                        <a href="research.html" class="text-sm font-bold text-university-blue hover:text-university-gold transition">Browse Full Research Archive &rarr;</a>
-                    </div>
+                <div class="mt-6 text-center">
+                    <a href="books.html" class="text-sm font-semibold text-journal-maroon hover:underline">View Complete Archive &rarr;</a>
                 </div>
-            </div>
+            </section>
         </div>
-        
-        <section class="bg-slate-900 rounded-2xl p-10 text-white shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-10"><i class="fas fa-network-wired text-[20rem]"></i></div>
-            <div class="relative z-10">
-                <h2 class="text-3xl font-serif font-bold text-white mb-2">State-of-the-Art Laboratories</h2>
-                <p class="text-slate-400 mb-8 max-w-2xl">Our department houses dedicated research facilities equipped with industry-standard software and hardware to support advanced spatial analysis and physical modeling.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-university-gold transition">
-                        <i class="fas fa-laptop-code text-3xl text-university-gold mb-4"></i>
-                        <h4 class="font-bold text-lg mb-2">Advanced GIS & RS Lab</h4>
-                        <p class="text-sm text-slate-400">Equipped with ArcGIS Pro, QGIS, and ERDAS Imagine for high-level spatial data analysis and modeling.</p>
-                    </div>
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-university-gold transition">
-                        <i class="fas fa-mountain text-3xl text-university-gold mb-4"></i>
-                        <h4 class="font-bold text-lg mb-2">Geomorphology Lab</h4>
-                        <p class="text-sm text-slate-400">Housing vast collections of topographical sheets, rock specimens, and physical modeling sandboxes.</p>
-                    </div>
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-university-gold transition">
-                        <i class="fas fa-cloud-sun-rain text-3xl text-university-gold mb-4"></i>
-                        <h4 class="font-bold text-lg mb-2">Climatology Station</h4>
-                        <p class="text-sm text-slate-400">On-campus automatic weather station providing live meteorological data for academic research.</p>
-                    </div>
+
+        <aside class="lg:col-span-1 space-y-8">
+            
+            <div class="bg-white border border-journal-border p-5 border-t-4 border-t-journal-maroon">
+                <h4 class="font-serif font-bold text-lg text-journal-navy mb-4">Official Announcements</h4>
+                <ul class="space-y-4 text-sm divide-y divide-journal-border">
+                    <li class="pt-2 first:pt-0">
+                        <span class="block text-[10px] text-slate-500 font-bold mb-1">MARCH 20, 2026</span>
+                        <a href="#" class="journal-link font-medium">M.A./M.Sc. Semester II Practical Examination Schedule Released.</a>
+                    </li>
+                    <li class="pt-3">
+                        <span class="block text-[10px] text-slate-500 font-bold mb-1">MARCH 15, 2026</span>
+                        <a href="#" class="journal-link font-medium">Ph.D. Entrance Examination (RET) admit cards available.</a>
+                    </li>
+                    <li class="pt-3">
+                        <span class="block text-[10px] text-slate-500 font-bold mb-1">MARCH 10, 2026</span>
+                        <a href="#" class="journal-link font-medium">Registration for upcoming Educational Tour to the Himalayan Belt is open.</a>
+                    </li>
+                </ul>
+                <a href="notice.html" class="block mt-4 text-xs font-bold text-journal-navy hover:underline text-right">All Notices &raquo;</a>
+            </div>
+
+            <div class="bg-journal-navy text-white p-5">
+                <h4 class="font-serif font-bold text-lg mb-4">Department Portals</h4>
+                <div class="space-y-2 text-sm font-medium">
+                    <a href="accounts.html" class="block py-2 border-b border-slate-700 hover:text-journal-maroon transition">Student Portal Login</a>
+                    <a href="tours.html" class="block py-2 border-b border-slate-700 hover:text-journal-maroon transition">Field Tour Galleries</a>
+                    <a href="#" class="block py-2 border-b border-slate-700 hover:text-journal-maroon transition">MGKV University Site</a>
+                    <a href="#" class="block py-2 hover:text-journal-maroon transition">Webmail Access</a>
                 </div>
             </div>
-        </section>
 
+            <div class="bg-white border border-journal-border p-5">
+                <h4 class="font-serif font-bold text-lg text-journal-navy mb-4">Information</h4>
+                <ul class="space-y-2 text-sm text-slate-600">
+                    <li><i class="fas fa-chevron-right text-[10px] text-journal-maroon mr-2"></i><a href="#" class="hover:underline">For Prospective Students</a></li>
+                    <li><i class="fas fa-chevron-right text-[10px] text-journal-maroon mr-2"></i><a href="#" class="hover:underline">For Current Scholars</a></li>
+                    <li><i class="fas fa-chevron-right text-[10px] text-journal-maroon mr-2"></i><a href="#" class="hover:underline">Library Guidelines</a></li>
+                    <li><i class="fas fa-chevron-right text-[10px] text-journal-maroon mr-2"></i><a href="#" class="hover:underline">Contact Administration</a></li>
+                </ul>
+            </div>
+
+        </aside>
     </main>
 
-    <div class="bg-university-gold py-10">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h3 class="text-2xl font-serif font-bold text-white mb-3"><i class="fas fa-paper-plane mr-2"></i> Subscribe to the Departmental Newsletter</h3>
-            <p class="text-yellow-100 text-sm mb-6">Stay updated with the latest research publications, seminar dates, and alumni news.</p>
-            <form class="flex flex-col sm:flex-row justify-center max-w-lg mx-auto gap-2">
-                <input type="email" placeholder="Enter your institutional or personal email" class="px-4 py-3 rounded w-full outline-none focus:ring-2 focus:ring-university-blue text-slate-800">
-                <button type="submit" class="bg-university-blue hover:bg-slate-900 text-white font-bold py-3 px-6 rounded transition whitespace-nowrap">Subscribe</button>
-            </form>
-        </div>
-    </div>
-
-    <footer class="bg-university-blue text-slate-300 pt-16 pb-8 border-t-[12px] border-slate-900">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            
+    <footer class="bg-journal-navy text-slate-400 py-10 mt-auto border-t-[6px] border-journal-maroon font-sans text-sm">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-university-blue text-xl"><i class="fas fa-university"></i></div>
-                    <h3 class="text-xl font-serif text-white font-bold leading-tight">SBPG College <br><span class="text-sm font-sans text-university-gold">Geography Dept.</span></h3>
-                </div>
-                <address class="not-italic text-sm space-y-3 text-slate-400">
-                    <p><i class="fas fa-map-marker-alt w-5 text-university-gold"></i> Baragaon, Varanasi,<br> Uttar Pradesh, India - 221204</p>
-                    <p><i class="fas fa-phone-alt w-5 text-university-gold"></i> +91 (XXX) XXX-XXXX</p>
-                    <p><i class="fas fa-envelope w-5 text-university-gold"></i> geography@sbpgcollege.edu.in</p>
-                </address>
+                <h3 class="text-white font-serif font-bold text-lg mb-4">Department of Geography</h3>
+                <p class="mb-2">Shri Baldeo P.G. College<br>Baragaon, Varanasi, UP 221204</p>
+                <p>Head of Department: Dr. Uma Kant Singh</p>
             </div>
-            
             <div>
-                <h4 class="text-white font-bold mb-5 uppercase text-sm tracking-widest border-b border-slate-700 pb-2">Academics</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Undergraduate Syllabus</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Postgraduate Syllabus</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Academic Calendar</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Examination Results</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Digital Library</a></li>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Resources</h4>
+                <ul class="space-y-2">
+                    <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                    <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
                 </ul>
             </div>
-
             <div>
-                <h4 class="text-white font-bold mb-5 uppercase text-sm tracking-widest border-b border-slate-700 pb-2">Institutional</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Principal's Desk</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> IQAC Cell</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Anti-Ragging Committee</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> MGKV University Portal</a></li>
-                    <li><a href="#" class="hover:text-university-gold transition flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> NIRF Data</a></li>
-                </ul>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Connect</h4>
+                <p class="mb-2"><i class="fas fa-envelope mr-2"></i> geography@sbpgcollege.edu.in</p>
+                <p class="mb-4"><i class="fas fa-phone mr-2"></i> +91 (XXX) XXX-XXXX</p>
+                <p class="text-xs text-slate-500">Developed by Shaurya Singh</p>
             </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-5 uppercase text-sm tracking-widest border-b border-slate-700 pb-2">Connect & Locate</h4>
-                <div class="flex space-x-3 mb-6">
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition text-slate-400"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white transition text-slate-400"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#0A66C2] hover:text-white transition text-slate-400"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#FF0000] hover:text-white transition text-slate-400"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="w-full h-24 bg-slate-800 rounded border border-slate-700 flex items-center justify-center text-slate-500 hover:text-university-gold cursor-pointer transition">
-                    <i class="fas fa-map-marked-alt text-2xl mr-2"></i> View on Google Maps
-                </div>
-            </div>
-
         </div>
-        
-        <div class="max-w-7xl mx-auto px-6 pt-6 border-t border-slate-800 text-xs text-center md:text-left flex flex-col md:flex-row justify-between items-center text-slate-500">
-            <p>&copy; 2026 Department of Geography, Shri Baldeo P.G. College. All Rights Reserved.</p>
-            <div class="mt-4 md:mt-0 space-x-4">
-                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
-                <span>|</span>
-                <a href="terms.html" class="hover:text-white transition">Terms of Use</a>
-                <span>|</span>
-                <span>Developed by Shaurya Singh</span>
-            </div>
+        <div class="max-w-6xl mx-auto px-4 md:px-8 mt-8 pt-4 border-t border-slate-700 text-center text-xs">
+            <p>&copy; 2026 Department of Geography, SBPG College. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // 1. Animated Number Counter (for Statistics section)
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200; // Lower is faster
-
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            });
-        }
-
-        // Trigger counter animation on scroll
-        let counted = false;
-        window.addEventListener('scroll', () => {
-            const statsSection = document.querySelector('.counter').parentElement.parentElement;
-            if(!counted && window.scrollY + window.innerHeight > statsSection.offsetTop + 50) {
-                animateCounters();
-                counted = true;
-            }
-        });
-
-        // 2. Accessibility: Font Resizer
-        let currentSize = 16; // Base tailwind text-base size
-        function changeFontSize(step) {
-            const body = document.getElementById('main-body');
-            if (step === 0) {
-                currentSize = 16; // Reset
-            } else {
-                currentSize += step * 2;
-                // Min/Max limits
-                if(currentSize < 12) currentSize = 12;
-                if(currentSize > 24) currentSize = 24;
-            }
-            body.style.fontSize = currentSize + 'px';
-        }
-
-        // 3. Accessibility: High Contrast Toggle
-        function toggleHighContrast() {
-            document.body.classList.toggle('high-contrast');
-        }
-    </script>
 </body>
 </html>
