@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department of Geography (SBPG College Baragaon, Varanasi)</title>
+    <title>Department of Geography | Shri Baldeo P.G. College</title>
     
-    <meta name="theme-color" content="#87CEEB">
-    <meta name="description" content="Free Study Materials for Geography students of PG and UG">
-    <meta name="keywords" content="Geography, Physical Geography, Remote Sensing, GIS Tutorials, Free Informations, IIRS Nodal Center">
+    <meta name="description" content="Official website of the Department of Geography, Shri Baldeo P.G. College Baragaon, Varanasi. Providing excellence in geographical sciences, GIS, and Remote Sensing.">
+    <meta name="keywords" content="Geography, Physical Geography, Remote Sensing, GIS Tutorials, IIRS Nodal Center, Varanasi">
     <meta name="author" content="Dr. Uma Kant Singh">
-    <meta name="google-site-verification" content="x4Je2KphwDPOnu3LJytwhZPOYHK9r1k0Ss9httCX8MI" />
-    <meta name="google-site-verification" content="GUpR9_h0enYUX5uC1hkGuZcxdERULgz9HzmAEcHXIRw" />
+    <meta name="theme-color" content="#0f172a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="mC+Fv1T+uPSUqnX75bXJHg" async></script>
-    <script charset="UTF-8" src="//web.webpushs.com/js/push/1c5dae19a23c51a7feee6f911f6722d4_1.js" async></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8477091822273839" crossorigin="anonymous"></script>
-    <script src="//code.tidio.co/vixby3orzsxehnytnthzvlyp8hujockf.js" async></script>
-    <script src="main.js"></script>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
@@ -36,223 +34,243 @@
         const analytics = getAnalytics(app);
     </script>
 
-    <style>
-        /* Animated Background */
-        body {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            min-height: 100vh;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        'university-blue': '#0f172a', /* Deep Oxford Blue */
+                        'university-gold': '#b45309', /* Subtle Gold/Bronze */
+                    }
+                }
+            }
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        /* Elegant smooth scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Subtle hover lift for cards */
+        .academic-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .academic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Popup Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse-icon {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .popup-animation { animation: fadeIn 0.5s ease-out forwards; }
-        .chatbot-icon { animation: pulse-icon 2s infinite; }
-        
-        /* Modern Marquee Replacement */
-        .ticker-wrap {
-            width: 100%;
+        /* Formal Notice Ticker */
+        .notice-container {
             overflow: hidden;
-            background-color: #fef3c7; /* Tailwind yellow-100 */
-            color: #92400e; /* Tailwind yellow-800 */
-            border-bottom: 2px solid #fde68a;
             white-space: nowrap;
+            position: relative;
         }
-        .ticker {
+        .notice-text {
             display: inline-block;
-            padding-left: 100%;
-            animation: ticker 20s linear infinite;
+            animation: formal-ticker 25s linear infinite;
         }
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+        @keyframes formal-ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .notice-container:hover .notice-text {
+            animation-play-state: paused;
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center py-10 px-4">
+<body class="font-sans text-slate-800 antialiased flex flex-col min-h-screen">
 
-    <div id="popup-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
-        <div id="popup-content" class="bg-white rounded-xl shadow-2xl max-w-md w-full mx-4 popup-animation transform transition-all duration-300">
-            <div class="p-6 relative">
-                <button id="close-popup" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-                <div class="text-center">
-                    <div class="mx-auto w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-robot text-blue-500 text-4xl chatbot-icon"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Exciting News!</h3>
-                    <p class="text-gray-600 mb-4">We've launched our brand new AI chatbot to serve you better!</p>
-                    <div class="bg-blue-50 rounded-lg p-4 mb-5 text-left border border-blue-100">
-                        <div class="flex items-start">
-                            <i class="fas fa-bolt text-blue-500 mt-1 flex-shrink-0"></i>
-                            <p class="ml-3 text-sm text-blue-800">
-                                Our chatbot is available 24/7 to answer your questions, provide instant support, and guide you through our services.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <button id="try-chatbot" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
-                            <i class="fas fa-comment-dots"></i> Try it now
-                        </button>
-                        <button id="learn-more" class="flex-1 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
-                            <i class="fas fa-info-circle"></i> Learn more
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-gray-50 px-6 py-3 rounded-b-xl flex items-center justify-between">
-                <p class="text-xs text-gray-500">We value your feedback!</p>
-                <div class="flex space-x-3">
-                    <button class="text-blue-600 hover:text-blue-800 transition-colors"><i class="fab fa-facebook text-lg"></i></button>
-                    <button class="text-blue-400 hover:text-blue-600 transition-colors"><i class="fab fa-twitter text-lg"></i></button>
-                </div>
-            </div>
+    <div class="bg-university-blue text-slate-300 text-xs py-2 px-6 border-b border-slate-700 flex justify-between items-center hidden md:flex">
+        <div class="flex space-x-6">
+            <span class="hover:text-white cursor-pointer transition"><i class="fas fa-phone mr-1"></i> Contact Administration</span>
+            <span class="hover:text-white cursor-pointer transition"><i class="fas fa-envelope mr-1"></i> geography@sbpgcollege.edu.in</span>
+        </div>
+        <div class="flex space-x-6 items-center">
+            <span id="academic-clock" class="font-mono text-university-gold font-bold"></span>
+            <a href="accounts.html" class="hover:text-white transition font-medium"><i class="fas fa-user-graduate mr-1"></i> Student Portal</a>
+            <a href="#" class="hover:text-white transition font-medium"><i class="fas fa-chalkboard-teacher mr-1"></i> Faculty Login</a>
         </div>
     </div>
 
-    <main class="w-full max-w-5xl bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-        
-        <header class="bg-slate-900 text-white p-8 relative text-center">
-            <div class="absolute top-4 right-6 bg-slate-800 py-1 px-3 rounded-md border border-slate-700 font-mono text-sm">
-                <i class="far fa-clock mr-2 text-blue-400"></i><span id="clock-span"></span>
-            </div>
-            <div class="mt-4">
-                <i class="fas fa-globe-asia text-5xl text-blue-400 mb-4 drop-shadow-lg"></i>
-                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">Department of Geography</h1>
-                <h2 class="text-lg md:text-xl font-medium text-slate-300">Shri Baldeo P. G. College Baragaon, Varanasi</h2>
-            </div>
-        </header>
-
-        <div class="ticker-wrap py-2">
-            <div class="ticker font-medium text-sm md:text-base">
-                🌍 This is the site of the Geography Department of Shri Baldev Postgraduate College, Baragaon, Varanasi. Here you will get educational material for your studies. | 🌍 यह श्री बलदेव स्नातकोत्तर महाविद्यालय बड़ागांव, वाराणसी के भूगोल विभाग की साइट है। यहां आपको अपनी पढ़ाई के लिए शैक्षणिक सामग्री मिलेगी।
-            </div>
-        </div>
-
-        <section class="p-6 md:p-10">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button onclick="navigateWithLoader('about.html')" class="group flex flex-col items-center justify-center p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 hover:shadow-md transition-all">
-                    <i class="fas fa-university text-3xl text-slate-600 group-hover:text-blue-600 mb-3 transition-colors"></i>
-                    <span class="font-semibold text-slate-800 group-hover:text-blue-800">About Us</span>
-                </button>
-                
-                <button onclick="navigateWithLoader('notice.html')" class="group flex flex-col items-center justify-center p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 hover:shadow-md transition-all">
-                    <i class="fas fa-bullhorn text-3xl text-slate-600 group-hover:text-blue-600 mb-3 transition-colors"></i>
-                    <span class="font-semibold text-slate-800 group-hover:text-blue-800">Notice</span>
-                </button>
-
-                <button onclick="navigateWithLoader('iirs.html')" class="group flex flex-col items-center justify-center p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 hover:shadow-md transition-all">
-                    <i class="fas fa-satellite text-3xl text-slate-600 group-hover:text-blue-600 mb-3 transition-colors"></i>
-                    <span class="font-semibold text-slate-800 group-hover:text-blue-800 text-center">IIRS Outreach Program</span>
-                </button>
-
-                <button onclick="navigateWithLoader('tours.html')" class="group flex flex-col items-center justify-center p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 hover:shadow-md transition-all">
-                    <i class="fas fa-map-marked-alt text-3xl text-slate-600 group-hover:text-blue-600 mb-3 transition-colors"></i>
-                    <span class="font-semibold text-slate-800 group-hover:text-blue-800 text-center">Educational Tours</span>
-                </button>
-
-                <button onclick="navigateWithLoader('books.html')" class="group flex flex-col items-center justify-center p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 hover:shadow-md transition-all">
-                    <i class="fas fa-book text-3xl text-slate-600 group-hover:text-blue-600 mb-3 transition-colors"></i>
-                    <span class="font-semibold text-slate-800 group-hover:text-blue-800">Books & Materials</span>
-                </button>
-
-                <button onclick="navigateWithLoader('accounts.html')" class="group flex flex-col items-center justify-center p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 hover:shadow-md transition-all">
-                    <i class="fas fa-user-circle text-3xl text-slate-600 group-hover:text-blue-600 mb-3 transition-colors"></i>
-                    <span class="font-semibold text-slate-800 group-hover:text-blue-800">Login / Register</span>
-                </button>
-            </div>
-
-            <div class="mt-4 flex justify-center">
-                <button onclick="navigateWithLoader('chat.html')" class="flex items-center gap-3 py-3 px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-full shadow-lg transform hover:-translate-y-1 transition-all">
-                    <i class="fas fa-robot text-xl"></i> Launch AI Chatbot
-                </button>
-            </div>
-        </section>
-
-        <footer class="bg-slate-100 border-t border-slate-200">
-            <div class="bg-amber-100 border-b border-amber-200 py-3 text-center">
-                <p class="text-amber-800 font-medium text-sm"><i class="fas fa-tools mr-2"></i> The website is currently in maintenance. Some features might not work as expected.</p>
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="w-16 h-16 bg-university-blue rounded-full flex items-center justify-center text-white text-2xl shadow-inner">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div>
+                    <h2 class="text-sm font-semibold tracking-widest text-university-gold uppercase mb-1">Shri Baldeo P.G. College Baragaon, Varanasi</h2>
+                    <h1 class="text-3xl font-serif font-bold text-university-blue leading-tight">Department of Geography</h1>
+                </div>
             </div>
             
-            <div class="p-6 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
-                <p>&copy; 2025. All rights reserved. Developed by Shaurya Singh</p>
-                <a href="privacy.html" class="mt-2 md:mt-0 text-blue-600 hover:text-blue-800 hover:underline font-medium">Privacy Policy</a>
-            </div>
-        </footer>
+            <nav class="hidden lg:flex space-x-8 mt-4 md:mt-0 font-medium text-slate-600">
+                <a href="about.html" class="hover:text-university-blue transition border-b-2 border-transparent hover:border-university-gold pb-1">About Us</a>
+                <a href="academics.html" class="hover:text-university-blue transition border-b-2 border-transparent hover:border-university-gold pb-1">Academics</a>
+                <a href="research.html" class="hover:text-university-blue transition border-b-2 border-transparent hover:border-university-gold pb-1">Research & Labs</a>
+                <a href="faculty.html" class="hover:text-university-blue transition border-b-2 border-transparent hover:border-university-gold pb-1">Faculty</a>
+            </nav>
+        </div>
+    </header>
 
+    <div class="bg-red-50 border-y border-red-100 py-2 px-6 flex items-center">
+        <div class="bg-red-700 text-white text-xs font-bold uppercase px-3 py-1 rounded shadow-sm mr-4 whitespace-nowrap">
+            Latest Updates
+        </div>
+        <div class="notice-container w-full text-sm text-red-900 font-medium cursor-default">
+            <span class="notice-text">
+                <i class="fas fa-circle text-[8px] mx-2 align-middle"></i> Study materials for the upcoming semester have been uploaded to the Student Portal.
+                <i class="fas fa-circle text-[8px] mx-2 align-middle"></i> Registration for the IIRS Outreach Program is now open for PG students.
+                <i class="fas fa-circle text-[8px] mx-2 align-middle"></i> Notice: Schedule for the upcoming Educational Field Tour has been released.
+            </span>
+        </div>
+    </div>
+
+    <section class="relative bg-university-blue text-white py-24 px-6 overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">Advancing the Frontiers of <br> Geographical Sciences</h2>
+            <p class="text-lg text-slate-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                Dedicated to excellence in teaching, cutting-edge spatial research, and comprehensive field studies. Fostering the next generation of geographers, urban planners, and environmental scientists.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="navigateWithLoader('academics.html')" class="px-8 py-3 bg-university-gold hover:bg-yellow-700 text-white font-semibold rounded shadow-lg transition duration-300">
+                    Explore Programs
+                </button>
+                <button onclick="navigateWithLoader('notice.html')" class="px-8 py-3 bg-transparent border border-slate-400 hover:border-white hover:bg-slate-800 text-white font-semibold rounded transition duration-300">
+                    View Circulars
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-16 w-full">
+        
+        <div class="text-center mb-12">
+            <h3 class="text-sm font-bold text-university-gold uppercase tracking-widest mb-2">Explore the Department</h3>
+            <h2 class="text-3xl font-serif font-bold text-university-blue">Academic Resources & Facilities</h2>
+            <div class="w-24 h-1 bg-university-gold mx-auto mt-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div onclick="navigateWithLoader('books.html')" class="academic-card bg-white rounded-xl border border-slate-200 p-8 cursor-pointer flex flex-col h-full">
+                <div class="w-14 h-14 bg-blue-50 text-university-blue rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-slate-800 mb-3">Study Materials</h3>
+                <p class="text-slate-500 mb-6 flex-grow leading-relaxed">Access comprehensive, peer-reviewed study materials, lecture notes, and digital books for both Undergraduate and Postgraduate students.</p>
+                <span class="text-university-blue font-semibold text-sm group-hover:underline">Access Library &rarr;</span>
+            </div>
+
+            <div onclick="navigateWithLoader('iirs.html')" class="academic-card bg-white rounded-xl border border-slate-200 p-8 cursor-pointer flex flex-col h-full">
+                <div class="w-14 h-14 bg-indigo-50 text-indigo-700 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-satellite-dish"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-slate-800 mb-3">IIRS Nodal Center</h3>
+                <p class="text-slate-500 mb-6 flex-grow leading-relaxed">Official outreach program in collaboration with the Indian Institute of Remote Sensing. Advanced training in GIS and spatial data.</p>
+                <span class="text-indigo-700 font-semibold text-sm group-hover:underline">View Programs &rarr;</span>
+            </div>
+
+            <div onclick="navigateWithLoader('tours.html')" class="academic-card bg-white rounded-xl border border-slate-200 p-8 cursor-pointer flex flex-col h-full">
+                <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-slate-800 mb-3">Educational Tours</h3>
+                <p class="text-slate-500 mb-6 flex-grow leading-relaxed">Mandatory field studies bridging theoretical knowledge with practical geographical phenomena. View schedules and past expedition galleries.</p>
+                <span class="text-emerald-700 font-semibold text-sm group-hover:underline">Explore Tours &rarr;</span>
+            </div>
+
+            <div onclick="navigateWithLoader('notice.html')" class="academic-card bg-white rounded-xl border border-slate-200 p-8 cursor-pointer flex flex-col h-full">
+                <div class="w-14 h-14 bg-amber-50 text-amber-700 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-slate-800 mb-3">Notices & Circulars</h3>
+                <p class="text-slate-500 mb-6 flex-grow leading-relaxed">Official departmental announcements, examination schedules, seminar invitations, and administrative circulars.</p>
+                <span class="text-amber-700 font-semibold text-sm group-hover:underline">Read Notices &rarr;</span>
+            </div>
+
+            <div onclick="navigateWithLoader('faculty.html')" class="academic-card bg-white rounded-xl border border-slate-200 p-8 cursor-pointer flex flex-col h-full">
+                <div class="w-14 h-14 bg-purple-50 text-purple-700 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-slate-800 mb-3">Faculty & Research</h3>
+                <p class="text-slate-500 mb-6 flex-grow leading-relaxed">Meet our distinguished faculty members, explore their ongoing research projects, and access their academic publications.</p>
+                <span class="text-purple-700 font-semibold text-sm group-hover:underline">Meet Faculty &rarr;</span>
+            </div>
+
+            <div onclick="navigateWithLoader('accounts.html')" class="academic-card bg-white rounded-xl border border-slate-200 p-8 cursor-pointer flex flex-col h-full">
+                <div class="w-14 h-14 bg-slate-100 text-slate-700 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-slate-800 mb-3">Student Portal</h3>
+                <p class="text-slate-500 mb-6 flex-grow leading-relaxed">Secure login area for enrolled students to access grades, submit assignments, and manage academic profiles.</p>
+                <span class="text-slate-700 font-semibold text-sm group-hover:underline">Login Here &rarr;</span>
+            </div>
+
+        </div>
     </main>
 
+    <footer class="bg-university-blue text-slate-300 py-12 border-t-4 border-university-gold">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <h3 class="text-2xl font-serif text-white font-bold mb-4">Department of Geography</h3>
+                <p class="text-sm leading-relaxed mb-4 max-w-sm">
+                    Shri Baldeo Postgraduate College<br>
+                    Baragaon, Varanasi, Uttar Pradesh, India.<br>
+                    Affiliated with Mahatma Gandhi Kashi Vidyapith.
+                </p>
+                <p class="text-sm">Head of Department: Dr. Uma Kant Singh</p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about.html" class="hover:text-university-gold transition">About the Department</a></li>
+                    <li><a href="academics.html" class="hover:text-university-gold transition">Syllabus & Curriculum</a></li>
+                    <li><a href="iirs.html" class="hover:text-university-gold transition">IIRS Registration</a></li>
+                    <li><a href="privacy.html" class="hover:text-university-gold transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Connect</h4>
+                <div class="flex space-x-4 mb-4">
+                    <a href="#" class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center hover:bg-university-gold transition text-white"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center hover:bg-university-gold transition text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="text-xs text-slate-500 mt-6">
+                    Developed & Maintained by <br> <span class="text-slate-400">Shaurya Singh</span>
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-700 text-xs text-center md:text-left flex flex-col md:flex-row justify-between">
+            <p>&copy; 2026 Department of Geography, SBPG College. All rights reserved.</p>
+            <p class="mt-2 md:mt-0"><i class="fas fa-shield-alt mr-1"></i> Official College Portal</p>
+        </div>
+    </footer>
+
     <script>
-        // Clock Functionality
-        const clockSpan = document.getElementById('clock-span');
-        function updateTime() {
+        // Formal Clock Update
+        function updateAcademicClock() {
+            const clockSpan = document.getElementById('academic-clock');
             const d = new Date();
-            const h = String(d.getHours()).padStart(2, '0');
-            const m = String(d.getMinutes()).padStart(2, '0');
-            const s = String(d.getSeconds()).padStart(2, '0');
-            clockSpan.textContent = `${h}:${m}:${s}`;
+            const timeString = d.toLocaleTimeString('en-US', { hour12: true, hour: 'numeric', minute: '2px', second: '2-digit' });
+            clockSpan.innerHTML = `<i class="far fa-clock mr-1"></i> IST: ${timeString}`;
         }
-        setInterval(updateTime, 1000);
-        updateTime(); // initial call
+        setInterval(updateAcademicClock, 1000);
+        updateAcademicClock();
 
-        // Popup Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('popup-overlay');
-            const popupContent = document.getElementById('popup-content');
-            const closeBtn = document.getElementById('close-popup');
-            const tryChatbotBtn = document.getElementById('try-chatbot');
-            const learnMoreBtn = document.getElementById('learn-more');
-
-            // Show popup
-            overlay.classList.remove('hidden');
-
-            function closePopup() {
-                popupContent.classList.remove('popup-animation');
-                popupContent.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => { overlay.classList.add('hidden'); }, 300);
-            }
-
-            closeBtn.addEventListener('click', closePopup);
-            overlay.addEventListener('click', (e) => { if (e.target === overlay) closePopup(); });
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
-
-            tryChatbotBtn.addEventListener('click', function() {
-                // Adjust routing based on your app structure
-                navigateWithLoader('chat.html'); 
-                closePopup();
-            });
-
-            learnMoreBtn.addEventListener('click', function() {
-                alert('Redirecting to learn more page...');
-                closePopup();
-            });
-        });
-
-        // Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                .then(reg => console.log('Service worker registered.', reg))
-                .catch(err => console.log('Service worker registration failed.', err));
-            });
-        }
-
-        // Fallback for navigateWithLoader if main.js is missing/broken
+        // Fallback routing function
         if (typeof navigateWithLoader !== 'function') {
             window.navigateWithLoader = function(url) {
                 window.location.href = url;
