@@ -223,7 +223,33 @@
             </div>
         </div>
     </div>
-
+<div id="viewer-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex flex-col">
+        <div class="flex justify-between items-center px-4 py-3 bg-[#1e1e1e] text-gray-200 border-b border-gray-700 shadow-md">
+            <div class="flex items-center space-x-3 overflow-hidden">
+                <i id="viewer-icon" class="fas fa-file text-lg"></i>
+                <span id="viewer-title" class="font-semibold text-sm tracking-wide truncate max-w-xl">Document Preview</span>
+            </div>
+            <div class="flex space-x-5 items-center">
+                <button onclick="downloadFromViewer()" class="text-gray-400 hover:text-white transition" title="Download File">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button onclick="openInNewTab()" class="text-gray-400 hover:text-white transition" title="Open in New Tab">
+                    <i class="fas fa-external-link-alt"></i>
+                </button>
+                <div class="h-5 w-px bg-gray-600 mx-2"></div> <button onclick="closeViewer()" class="text-gray-400 hover:text-red-500 transition" title="Close Viewer">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="flex-grow w-full relative flex items-center justify-center bg-[#0f0f0f]">
+            <div id="viewer-loading" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+                <i class="fas fa-circle-notch fa-spin text-4xl mb-4"></i>
+                <p class="font-medium tracking-wide">Loading secure preview...</p>
+            </div>
+            <iframe id="viewer-iframe" class="w-full h-full border-none relative z-10 hidden" allow="autoplay"></iframe>
+        </div>
+    </div>
     <script>
         // --- 1. CONFIGURATION ---
         const API_KEY = 'AIzaSyAum6BZYqXGERQi17xB6uLzek5HeyE87AE';
@@ -580,13 +606,59 @@
             menu.style.top = y + 'px';
         }
 
+// --- 8. IN-APP VIEWER LOGIC ---
+        let currentViewerItem = null;
+
         function openSelected() {
             if(!selectedItem) return;
+            
             if(selectedItem.type === 'folder') {
                 navigateTo(selectedItem.id, selectedItem.name, true);
             } else {
-                // Open file in a new tab using Google Drive Viewer
-                window.open(selectedItem.viewLink, '_blank');
+                // Initialize the custom in-app viewer
+                currentViewerItem = selectedItem;
+                document.getElementById('viewer-title').innerText = selectedItem.name;
+                document.getElementById('viewer-icon').className = `fas ${selectedItem.icon}`;
+                
+                // Show modal and reset iframe/loading state
+                document.getElementById('viewer-modal').classList.remove('hidden');
+                document.getElementById('viewer-loading').classList.remove('hidden');
+                
+                const iframe = document.getElementById('viewer-iframe');
+                iframe.classList.add('hidden');
+                
+                // Hide the loading spinner once the iframe finishes loading
+                iframe.onload = function() {
+                    document.getElementById('viewer-loading').classList.add('hidden');
+                    this.classList.remove('hidden');
+                };
+                
+                // Format the Google Drive ID into an embeddable preview URL
+                iframe.src = `https://drive.google.com/file/d/${selectedItem.id}/preview`;
+            }
+        }
+
+        function closeViewer() {
+            document.getElementById('viewer-modal').classList.add('hidden');
+            const iframe = document.getElementById('viewer-iframe');
+            iframe.src = ''; // Clear the source to immediately stop audio/video playback
+            iframe.onload = null; // Clear the onload handler
+            currentViewerItem = null;
+        }
+
+        function downloadFromViewer() {
+            if (currentViewerItem) {
+                if (currentViewerItem.downloadLink) {
+                    window.location.href = currentViewerItem.downloadLink;
+                } else {
+                    window.open(currentViewerItem.viewLink, '_blank');
+                }
+            }
+        }
+
+        function openInNewTab() {
+            if (currentViewerItem) {
+                window.open(currentViewerItem.viewLink, '_blank');
             }
         }
 
