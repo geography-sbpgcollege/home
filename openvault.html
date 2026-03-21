@@ -401,14 +401,15 @@
 
             if (currentView === 'grid') {
                 detailsHeader.classList.add('hidden');
-                container.className = 'flex-grow overflow-y-auto p-4 flex flex-wrap content-start gap-2';
+                container.className = 'flex-grow overflow-y-auto p-4 flex flex-wrap content-start gap-3'; // Increased gap slightly
                 
                 items.forEach(item => {
                     const el = document.createElement('div');
-                    el.className = 'file-item w-28 h-28 flex flex-col items-center justify-start p-2 rounded text-center cursor-pointer';
+                    // FIX: Changed h-28 to h-32, added overflow-hidden, and flex-shrink-0
+                    el.className = 'file-item w-28 h-32 overflow-hidden flex flex-col items-center justify-start p-2 rounded text-center cursor-pointer flex-shrink-0';
                     el.innerHTML = `
-                        <i class="fas ${item.icon} text-5xl mb-2 drop-shadow-sm"></i>
-                        <span class="text-xs break-words line-clamp-2 leading-tight">${item.name}</span>
+                        <i class="fas ${item.icon} text-5xl mb-2 drop-shadow-sm flex-shrink-0"></i>
+                        <span class="text-xs break-words line-clamp-2 leading-tight w-full px-1" title="${item.name}">${item.name}</span>
                     `;
                     attachItemEvents(el, item);
                     container.appendChild(el);
