@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Directory | Department of Geography</title>
+    
+    <meta name="description" content="Academic staff and faculty members of the Department of Geography, Shri Baldeo P.G. College Baragaon, Varanasi.">
+    <meta name="theme-color" content="#FAFAFA">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        serif: ['Crimson Pro', 'serif'] 
+                    },
+                    colors: {
+                        'journal-navy': '#0A192F',
+                        'journal-maroon': '#8B0000',
+                        'journal-paper': '#FAFAFA',
+                        'journal-border': '#EAEAEA'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #FAFAFA; color: #333333; transition: all 0.3s ease; }
+        
+        /* High Contrast Mode Classes */
+        body.high-contrast { background-color: #000; color: #fff; }
+        body.high-contrast .bg-white, body.high-contrast .bg-journal-paper { background-color: #111 !important; border-color: #fff !important; }
+        body.high-contrast .text-slate-800, body.high-contrast .text-slate-700, body.high-contrast .text-slate-500 { color: #fff !important; }
+        body.high-contrast .text-journal-navy, body.high-contrast .text-journal-maroon { color: #fff !important; }
+        body.high-contrast .bg-journal-navy { background-color: #000 !important; border-bottom: 2px solid #fff; }
+
+        .journal-link { color: #8B0000; transition: color 0.2s ease; }
+        .journal-link:hover { color: #0A192F; text-decoration: underline; }
+        
+        /* Faculty Card Hover Effects */
+        .faculty-card { transition: all 0.3s ease; border-bottom: 3px solid transparent; }
+        .faculty-card:hover { transform: translateY(-4px); border-bottom-color: #8B0000; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .faculty-img-wrapper { overflow: hidden; }
+        .faculty-img-wrapper img { transition: transform 0.5s ease; }
+        .faculty-card:hover .faculty-img-wrapper img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen text-base" id="main-body">
+
+    <!-- Top Bar -->
+    <div class="bg-journal-navy text-slate-300 text-xs py-2 px-4 md:px-8 border-b border-slate-700 flex justify-between items-center z-50 relative font-sans">
+        <div class="flex space-x-4 items-center">
+            <span class="font-semibold text-white tracking-wider">UP GOVT. GUIDELINES</span>
+            <div class="hidden sm:flex space-x-2 border-l border-slate-600 pl-4">
+                <button onclick="changeFontSize(-1)" class="hover:text-white px-1 font-serif" title="Decrease Font">A-</button>
+                <button onclick="changeFontSize(0)" class="hover:text-white px-1 text-white font-bold font-serif" title="Default Font">A</button>
+                <button onclick="changeFontSize(1)" class="hover:text-white px-1 font-serif" title="Increase Font">A+</button>
+                <button onclick="toggleHighContrast()" class="hover:text-white ml-2 border border-slate-600 px-2 rounded" title="High Contrast"><i class="fas fa-adjust"></i></button>
+            </div>
+        </div>
+        <div class="flex space-x-4 items-center">
+            <select class="bg-transparent text-white text-xs border-none outline-none font-semibold cursor-pointer hover:text-gray-300 transition">
+                <option value="en" class="text-black">English</option>
+                <option value="hi" class="text-black">हिन्दी (Hindi)</option>
+            </select>
+            <span class="text-slate-600">|</span>
+            <a href="webmail.html" class="hover:text-white transition hidden md:block"><i class="fas fa-envelope mr-1"></i> Webmail</a>
+            <a href="accounts.html" class="hover:text-white transition font-bold"><i class="fas fa-user mr-1"></i> Portal Login</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white border-b border-journal-border pt-10 pb-8 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div class="max-w-4xl flex items-center space-x-6">
+                <div class="w-24 h-24 border-[3px] border-journal-navy rounded-full flex flex-col items-center justify-center text-journal-maroon p-1 relative shrink-0">
+                    <div class="border border-dashed border-journal-navy w-full h-full rounded-full flex items-center justify-center">
+                        <i class="fas fa-globe-asia text-4xl"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-2 font-sans">Shri Baldeo P.G. College Baragaon, Varanasi</h2>
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold text-journal-navy leading-tight mb-2">Department of Geography</h1>
+                    <p class="text-lg font-serif text-journal-maroon italic">Advancing Spatial Sciences, Research, and Higher Education</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-journal-border sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex space-x-8 overflow-x-auto text-[13px] font-bold uppercase tracking-widest text-journal-navy py-4">
+            <a href="index.html" class="whitespace-nowrap hover:text-journal-maroon transition">Overview</a>
+            <a href="academics.html" class="whitespace-nowrap hover:text-journal-maroon transition">Curriculum</a>
+            <!-- Active State on Faculty -->
+            <a href="faculty.html" class="whitespace-nowrap text-journal-maroon border-b-[3px] border-journal-maroon pb-1">Faculty</a>
+            <a href="iirs.html" class="whitespace-nowrap hover:text-journal-maroon transition">IIRS Nodal Center</a>
+            <a href="books.html" class="whitespace-nowrap hover:text-journal-maroon transition">Digital Archives</a>
+            <a href="notice.html" class="whitespace-nowrap hover:text-journal-maroon transition">Circulars</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 md:px-8 py-12 w-full">
+        
+        <div class="mb-12 border-b border-journal-border pb-6">
+            <h2 class="text-3xl font-serif font-bold text-journal-navy mb-4">Academic Staff & Faculty</h2>
+            <p class="font-serif text-lg leading-relaxed text-slate-700 max-w-4xl text-justify">
+                Our faculty comprises distinguished scholars and researchers dedicated to the advancement of geographical sciences. They bring decades of expertise in physical geography, human geography, and geospatial technologies, actively mentoring students and guiding advanced doctoral research.
+            </p>
+        </div>
+
+        <!-- Faculty Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Faculty Card 1 (Head / Senior Professor) -->
+            <article class="faculty-card bg-white border border-journal-border flex flex-col h-full shadow-sm">
+                <div class="faculty-img-wrapper h-64 bg-slate-200 relative">
+                    <!-- Replace src with actual faculty photo -->
+                    <img src="https://via.placeholder.com/400x500?text=Faculty+Photo" alt="Faculty Name" class="w-full h-full object-cover object-top">
+                    <div class="absolute bottom-0 left-0 bg-journal-navy text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1">
+                        Head of Department
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-serif font-bold text-journal-navy mb-1">Prof. [Father's Name]</h3>
+                    <p class="text-sm font-sans font-bold text-journal-maroon mb-3">Professor of Geography & Ph.D. Guide</p>
+                    <p class="text-sm font-serif text-slate-600 mb-4 flex-grow">
+                        Extensive research in Geomorphology and advanced spatial sciences. Over 25 years of academic excellence and active doctoral mentorship in the Gangetic plain region.
+                    </p>
+                    <div class="border-t border-journal-border pt-4 mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Geomorphology</span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Remote Sensing</span>
+                        </div>
+                        <a href="faculty-profile-template.html" class="inline-block text-xs font-sans font-bold text-white bg-journal-navy hover:bg-slate-800 px-4 py-2 transition w-full text-center">
+                            View Full Profile &rarr;
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Faculty Card 2 -->
+            <article class="faculty-card bg-white border border-journal-border flex flex-col h-full shadow-sm">
+                <div class="faculty-img-wrapper h-64 bg-slate-200">
+                    <img src="https://via.placeholder.com/400x500?text=Faculty+Photo" alt="Faculty Name" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-serif font-bold text-journal-navy mb-1">Dr. [Name Here]</h3>
+                    <p class="text-sm font-sans font-bold text-journal-maroon mb-3">Associate Professor</p>
+                    <p class="text-sm font-serif text-slate-600 mb-4 flex-grow">
+                        Specializes in Climatology and Environmental Geography, focusing on urban heat islands and sustainable environment management.
+                    </p>
+                    <div class="border-t border-journal-border pt-4 mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Climatology</span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Environment</span>
+                        </div>
+                        <a href="#" class="inline-block text-xs font-sans font-bold text-journal-navy border border-journal-navy hover:bg-journal-paper px-4 py-2 transition w-full text-center">
+                            View Full Profile &rarr;
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Faculty Card 3 -->
+            <article class="faculty-card bg-white border border-journal-border flex flex-col h-full shadow-sm">
+                <div class="faculty-img-wrapper h-64 bg-slate-200">
+                    <img src="https://via.placeholder.com/400x500?text=Faculty+Photo" alt="Faculty Name" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-serif font-bold text-journal-navy mb-1">Dr. [Name Here]</h3>
+                    <p class="text-sm font-sans font-bold text-journal-maroon mb-3">Assistant Professor</p>
+                    <p class="text-sm font-serif text-slate-600 mb-4 flex-grow">
+                        Expert in Human Geography and Regional Planning with a strong emphasis on population dynamics and socio-economic mapping.
+                    </p>
+                    <div class="border-t border-journal-border pt-4 mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Human Geography</span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Demography</span>
+                        </div>
+                        <a href="#" class="inline-block text-xs font-sans font-bold text-journal-navy border border-journal-navy hover:bg-journal-paper px-4 py-2 transition w-full text-center">
+                            View Full Profile &rarr;
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Faculty Card 4 -->
+            <article class="faculty-card bg-white border border-journal-border flex flex-col h-full shadow-sm">
+                <div class="faculty-img-wrapper h-64 bg-slate-200">
+                    <img src="https://via.placeholder.com/400x500?text=Faculty+Photo" alt="Faculty Name" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-serif font-bold text-journal-navy mb-1">Dr. [Name Here]</h3>
+                    <p class="text-sm font-sans font-bold text-journal-maroon mb-3">Assistant Professor</p>
+                    <p class="text-sm font-serif text-slate-600 mb-4 flex-grow">
+                        Focuses on Economic Geography and modern Cartography, bringing computational GIS tools into the classroom environment.
+                    </p>
+                    <div class="border-t border-journal-border pt-4 mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Economic Geog.</span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">GIS & Mapping</span>
+                        </div>
+                        <a href="#" class="inline-block text-xs font-sans font-bold text-journal-navy border border-journal-navy hover:bg-journal-paper px-4 py-2 transition w-full text-center">
+                            View Full Profile &rarr;
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Faculty Card 5 -->
+            <article class="faculty-card bg-white border border-journal-border flex flex-col h-full shadow-sm">
+                <div class="faculty-img-wrapper h-64 bg-slate-200">
+                    <img src="https://via.placeholder.com/400x500?text=Faculty+Photo" alt="Faculty Name" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-serif font-bold text-journal-navy mb-1">Dr. [Name Here]</h3>
+                    <p class="text-sm font-sans font-bold text-journal-maroon mb-3">Assistant Professor</p>
+                    <p class="text-sm font-serif text-slate-600 mb-4 flex-grow">
+                        Conducts primary research in Agricultural Geography and Land Use Planning, bridging field observations with academic theory.
+                    </p>
+                    <div class="border-t border-journal-border pt-4 mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Agriculture</span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase px-2 py-1 rounded-sm">Land Use</span>
+                        </div>
+                        <a href="#" class="inline-block text-xs font-sans font-bold text-journal-navy border border-journal-navy hover:bg-journal-paper px-4 py-2 transition w-full text-center">
+                            View Full Profile &rarr;
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Footer Area (Same as your main page) -->
+    <footer class="bg-journal-navy text-slate-400 py-12 border-t-[8px] border-journal-maroon font-sans text-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
+            <!-- (Footer Content kept exactly identical to your provided index.html to save space, copy it directly from your original code here) -->
+            <div>
+                <h3 class="text-xl font-serif text-white font-bold mb-4 flex items-center">
+                    <i class="fas fa-globe-asia text-journal-maroon mr-2 text-2xl"></i> SBPG College
+                </h3>
+                <address class="not-italic text-sm space-y-2 text-slate-400">
+                    <p class="font-bold text-slate-300">Department of Geography</p>
+                    <p>Baragaon, Varanasi, UP - 221204</p>
+                    <p class="mt-2"><i class="fas fa-phone-alt w-4 text-journal-maroon"></i> +91 (XXX) XXX-XXXX</p>
+                    <p><i class="fas fa-envelope w-4 text-journal-maroon"></i> geography@sbpgcollege.edu.in</p>
+                </address>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest border-b border-slate-700 pb-2">Academic Directory</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Undergraduate Syllabi</a></li>
+                    <li><a href="#" class="hover:text-white transition">Postgraduate Syllabi</a></li>
+                    <li><a href="#" class="hover:text-white transition">Academic Calendar</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                 <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest border-b border-slate-700 pb-2">Institutional</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Principal's Welcome</a></li>
+                    <li><a href="#" class="hover:text-white transition">Internal Quality (IQAC)</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest border-b border-slate-700 pb-2">Connect & Locate</h4>
+                <div class="flex space-x-3 mb-4">
+                    <a href="#" class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center hover:bg-[#1877F2] text-slate-400"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center hover:bg-[#1DA1F2] text-slate-400"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 md:px-8 pt-6 border-t border-slate-800 text-xs flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2026 Department of Geography, Shri Baldeo P.G. College. All Rights Reserved.</p>
+            <div class="mt-4 md:mt-0 space-x-4">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <span>|</span>
+                <a href="terms.html" class="hover:text-white transition">Terms of Use</a>
+                <span>|</span>
+                <span class="text-slate-500">System by Shaurya Singh</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // High Contrast and Font Resizer scripts remain identical to main page
+        let currentSize = 16; 
+        function changeFontSize(step) {
+            const body = document.getElementById('main-body');
+            if (step === 0) currentSize = 16; 
+            else currentSize = Math.max(12, Math.min(24, currentSize + step * 2));
+            body.style.fontSize = currentSize + 'px';
+        }
+        function toggleHighContrast() { document.body.classList.toggle('high-contrast'); }
+    </script>
+</body>
+</html>
